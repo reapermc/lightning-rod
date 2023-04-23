@@ -1,0 +1,75 @@
+from wicked_expressions:api import StaticVar, Int, ExpressionNode
+from ./raw_cmd import raw_cmd
+from ./utils import binary_progression
+from ./config import Config
+
+
+_WORKING_DIR = f"{Config.ROOT}/xp"
+
+
+def get_xp() -> ExpressionNode:
+    return _get_xp('points')
+
+def get_level() -> ExpressionNode:
+    return _get_xp('levels')
+
+def set_xp(amount: int | ExpressionNode):
+    if not isinstance(amount, ExpressionNode):
+        return raw_cmd(f"xp set @s {amount} points")
+    _set_xp_from_expression(amount, 'points')
+
+def set_level(amount: int | ExpressionNode):
+    if not isinstance(amount, ExpressionNode):
+        return raw_cmd(f"xp set @s {amount} levels")
+    _set_xp_from_expression(amount, 'levels')
+
+def set_xp_percent(amount: int | ExpressionNode):
+    amt = StaticVar(Int)
+    previous_level = StaticVar(Int)
+
+    amt = amount
+
+    execute function f"{_WORKING_DIR}/set_percent":
+        # save previous level
+        previous_level = get_level()
+
+        set_level(8772)
+        set_xp(0)
+
+        for n in binary_progression(7, reversed=True):
+            if amt >= n:
+                increment = n * 778      # (lvl 8872) 778 xp = 1% of bar
+
+                # prevents bar overflow at 100%
+                if n == 64:
+                    increment -= 1
+
+                execute function f"{_WORKING_DIR}/set_percent/{n}":
+                    amt -= n
+                    xp add @s increment
+
+        # restore level
+        set_level(previous_level)
+
+def _get_xp(mode: str) -> ExpressionNode:
+    output = StaticVar(Int)
+
+    with output.store():
+        if mode in ('p', 'points'):
+            xp query @s points
+        elif mode in ('l', 'levels'):
+            xp query @s levels
+
+    return output
+
+def _set_xp_from_expression(amount: ExpressionNode, mode: str):
+    amt = StaticVar(Int)
+
+    amt = amount
+    
+    execute function f"{_WORKING_DIR}/set_{mode}":
+        for n in binary_progression(28, reversed=True):
+            if amt >= n:
+                execute function f"{_WORKING_DIR}/set_{mode}/{n}":
+                    amt -= n
+                    raw_cmd(f"xp add @s {n} {mode}")

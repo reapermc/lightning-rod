@@ -1,0 +1,7 @@
+
+
+def give(item_id: str, count: int = 1, nbt: dict = None):
+    if nbt is None:
+        give @s item_id count
+    else:
+        give @s item_id{**nbt} count

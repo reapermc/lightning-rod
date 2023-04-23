@@ -1,0 +1,91 @@
+from wicked_expressions:api import StaticVar, Int, ExpressionNode
+from ./config import Config
+
+
+_WORKING_DIR = f"{Config.ROOT}/math"
+
+
+def random(value_min: int | ExpressionNode, value_max: int | ExpressionNode) -> ExpressionNode:
+    min = StaticVar(Int)
+    max = StaticVar(Int)
+    size = StaticVar(Int)
+    lcg = StaticVar(Int)
+    output = StaticVar(Int)
+
+    lcg_a = 1630111353
+    lcg_c = 1623164762
+    lcg_m = 2147483647
+    setup_path = f"{_WORKING_DIR}/random/setup"
+    run_path = f"{_WORKING_DIR}/random/run"
+
+    min = value_min
+    max = value_max
+
+    merge function_tag minecraft:load {"values": [setup_path]}
+    function setup_path:
+        if not lcg.exists():
+            with lcg.store():
+                seed
+
+    execute function run_path:
+        size = max - min + 1
+        lcg = (lcg * lcg_a + lcg_c) % lcg_m
+        output = lcg / 8 % size + min
+
+    return output
+
+
+def pow(val: int | ExpressionNode, exp: int | ExpressionNode) -> ExpressionNode:
+    value = StaticVar(Int)
+    exponent = StaticVar(Int)
+    output = StaticVar(Int)
+
+    run_path = f"{_WORKING_DIR}/pow/run"
+
+    value = val
+    exponent = exp
+
+    execute function run_path:
+        output *= value
+        exponent -= 1
+
+        if exponent > 1:
+            function run_path
+
+    return output
+
+
+def sqrt(val: int | ExpressionNode) -> ExpressionNode:
+    a = StaticVar(Int)
+    b = StaticVar(Int)
+    value = StaticVar(Int)
+    output = StaticVar(Int)
+
+    run_path = '{_WORKING_DIR}/sqrt/run'
+
+    value = val
+
+    if value >= 214748:
+        tellraw @a [{"text":f"\n{Config.LIBRARY_NAME} ","color":"gray"},{"text":" ERROR 'sqrt()' overflow. Input value of ","color":"red"},{"score":{"name": value.holder, "objective": value.obj},"color":"red"},{"text":" is too large.","color":"red"}]
+    if value < 0:
+        tellraw @a [{"text":f"\n{Config.LIBRARY_NAME} ","color":"gray"},{"text":" ERROR 'sqrt()' received input value ","color":"red"},{"score":{"name": value.holder, "objective": value.obj},"color":"red"},{"text":". Negative input values not supported.","color":"red"}]
+
+    b = value
+    value *= 10000
+    output = 1255
+
+    for _ in range(4):
+        execute function run_path:
+            a = value / output
+            output += a
+            output /= 2
+
+    if b >= 10000:
+        function run_path
+    if b >= 100000:
+        function run_path
+
+    if output <= 0:
+        output *= -1
+
+    return output

@@ -1,0 +1,16 @@
+from ./raw_cmd import raw_cmd
+
+
+def grant_advancement(name: str, mode: str = 'only', criteria: str = None):
+    if name == '*':
+        return raw_cmd(f"advancement grant @s everything")
+    if criteria is not None:
+        return raw_cmd(f"advancement grant @s {mode} {name} {criteria}")
+    return raw_cmd(f"advancement grant @s {mode} {name}")
+
+def revoke_advancement(name: str, mode: str = 'only', criteria: str = None):
+    if name == '*':
+        return raw_cmd(f"advancement revoke @s everything")
+    if criteria is not None:
+        return raw_cmd(f"advancement revoke @s {mode} {name} {criteria}")
+    return raw_cmd(f"advancement revoke @s {mode} {name}")

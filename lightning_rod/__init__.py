@@ -12,4 +12,5 @@ def beet_default(ctx: Context):
                 "data/lightning_rod/modules": "@lightning_rod/modules",
             },
         ),
+        "wicked_expressions",
     )

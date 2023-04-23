@@ -1,0 +1,11 @@
+def clear(item_id: str, count: int = None, nbt: dict = None):
+    if nbt is None:
+        if count is None:
+            clear @s item_id
+        else:
+            clear @s item_id count
+    else:
+        if count is None:
+            clear @s item_id{**nbt}
+        else:
+            clear @s item_id{**nbt} count
