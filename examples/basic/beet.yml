@@ -1,0 +1,7 @@
+require:
+  - bolt
+  - lightning_rod
+data_pack:
+  load: "src"
+pipeline:
+  - mecha
