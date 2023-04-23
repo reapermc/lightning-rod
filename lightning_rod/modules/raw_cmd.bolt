@@ -1,0 +1,2 @@
+def raw_cmd(cmd: str):
+    raw cmd

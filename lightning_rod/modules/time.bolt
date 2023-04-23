@@ -1,0 +1,46 @@
+from wicked_expressions:api import StaticVar, Int, ExpressionNode
+from ./raw_cmd import raw_cmd
+from ./utils import binary_progression
+from ./config import Config
+
+
+_WORKING_DIR = f"{Config.ROOT}/time"
+
+
+def get_gametime() -> ExpressionNode:
+    return _get('gametime')
+
+def get_time() -> ExpressionNode:
+    return _get('daytime')
+
+def get_day() -> ExpressionNode:
+    return _get('day')
+
+def set_time(value: int | ExpressionNode):
+    output = StaticVar(Int)
+
+    if not isinstance(value, ExpressionNode):
+        time set value
+        return 0
+
+    output = value
+    bin_prog = binary_progression(16)
+    bin_prog.reverse()
+    run_path = f"{_WORKING_DIR}/set_dynamic"
+
+    execute function run_path:
+        time set 0
+
+        for n in bin_prog:
+            if output >= n:
+                execute function f"{run_path}_{n}":
+                    output -= n
+                    time add n
+
+def _get(mode: str) -> ExpressionNode:
+    output = StaticVar(Int)
+
+    with output.store():
+        raw_cmd(f"time query {mode}")
+
+    return output

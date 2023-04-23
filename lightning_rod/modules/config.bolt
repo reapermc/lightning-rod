@@ -1,0 +1,6 @@
+
+
+class Config:
+    LIBRARY_NAME = 'lightning_rod'
+    ROOT = 'reapermc:lightning_rod'
+    ROOT_LOCAL = generate_path('reapermc/lightning_rod')

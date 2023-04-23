@@ -1,0 +1,161 @@
+from typing import ClassVar
+from dataclasses import dataclass
+
+from wicked_expressions:api import StaticVar, Int, ExpressionNode
+from ./rebindable import Rebindable
+from ./utils import logger
+from ./raw_cmd import raw_cmd
+from ./tag import tag, untag
+from ./config import Config
+
+import inspect
+
+
+@dataclass
+class Bossbar(Rebindable):
+    _bossbar_index: ClassVar[int] = 0
+    _temp: ClassVar[ExpressionNode] = StaticVar(Int)
+
+    def __post_init__(self):
+        self._id = self._generate_unique_id()
+        self._name = self._id
+        self._color = 'white'
+        self._style = 'progress'
+        self._visible = True
+        self._last_value = None
+        self._last_max_value = None
+
+        self._shown_tag = f"{self._id.replace(':', '.')}.shown"
+        self._setup(self.id, self._name)
+
+    @property
+    def id(self) -> str:
+        return self._id
+
+    @id.setter
+    def id(self, *args):
+        return logger.error("Could not overwrite read-only parameter 'id' of Bossbar object.")
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    @name.setter
+    def name(self, new_name: str | dict):
+        self._name = new_name
+        bossbar set self._id name new_name
+
+    @property
+    def color(self) -> str:
+        return self._color
+
+    @color.setter
+    def color(self, new_color: str):
+        valid_colors = ['blue', 'green', 'pink', 'purple', 'red', 'white', 'yellow']
+
+        if new_color not in valid_colors:
+            return logger.error(f"Invalid color '{new_color}'. Valid options: {valid_colors}.")
+
+        self._color = new_color
+        raw_cmd(f"bossbar set {self.id} color {new_color}")
+
+    @property
+    def style(self) -> str:
+        return self._style
+
+    @style.setter
+    def style(self, new_style: str):
+        valid_styles = ['progress', 'notched_6', 'notched_10', 'notched_12', 'notched_20']
+
+        if new_style not in valid_styles:
+            return logger.error(f"Invalid style '{new_style}'. Valid options: {valid_styles}.")
+
+        self._style = new_style
+        raw_cmd(f"bossbar set {self.id} style {new_style}")
+
+    @property
+    def visible(self) -> bool:
+        return self._visible
+
+    @visible.setter
+    def visible(self, new_state: bool):
+        self._visible = new_state
+        bossbar set self.id visible new_state
+
+    def hide(self):
+        untag(self._shown_tag)
+        # hide for all players
+        bossbar set self.id players
+        # restore for all except @s
+        bossbar set self.id players @a[tag=self._shown_tag]
+
+    def show(self):
+        tag(self._shown_tag)
+        bossbar set self.id players @s
+
+    @property
+    def value(self) -> ExpressionNode:
+        if self._get_caller_name() != 'get_attribute':
+            return None
+        if isinstance(self._last_value, int):
+            return self._last_value
+
+        with self._temp.store():
+            bossbar get self.id value
+        return self._temp
+
+    @value.setter
+    def value(self, new_value: int | ExpressionNode):
+        self._last_value = new_value
+
+        if isinstance(new_value, int):
+            # int value
+            return raw_cmd(f"bossbar set {self._id} value {new_value}")
+
+        # expression value
+        self._temp = new_value
+        store result bossbar self.id value:
+            self._temp.get()
+
+    @property
+    def max_value(self) -> ExpressionNode:
+        if self._get_caller_name() != 'get_attribute':
+            return None
+        if isinstance(self._last_max_value, int):
+            return self._last_max_value
+
+        with self._temp.store():
+            bossbar get self.id max
+        return self._temp
+
+    @max_value.setter
+    def max_value(self, new_value: int | ExpressionNode):
+        self._last_max_value = new_value
+
+        if isinstance(new_value, int):
+            # int value
+            return raw_cmd(f"bossbar set {self._id} max {new_value}")
+
+        # expression value
+        self._temp = new_value
+        store result bossbar self.id max:
+            self._temp.get()
+
+    @classmethod
+    def _generate_unique_id(cls):
+        index = cls._bossbar_index
+        cls._bossbar_index += 1
+        return f"{Config.LIBRARY_NAME}:bossbar.{ctx.project_id}.{index}"
+
+    @classmethod
+    def _setup(cls, id: str, name: str):
+        setup_path = f"{Config.ROOT_LOCAL}/bossbar/setup"
+
+        merge function_tag minecraft:load {"values": [setup_path]}
+        append function setup_path:
+            bossbar add id str(name)
+
+    @staticmethod
+    def _get_caller_name() -> str:
+        frame = inspect.getouterframes(inspect.currentframe(), 2)[2]
+        return frame.function

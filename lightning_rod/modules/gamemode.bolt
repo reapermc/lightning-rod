@@ -1,0 +1,28 @@
+from wicked_expressions:api import StaticVar, Int, ExpressionNode
+
+
+_MATCHED_MODE = {
+    'survival': 'survival',
+    '0': 'survival',
+    'creative': 'creative',
+    '1': 'creative',
+    'adventure': 'adventure',
+    '2': 'adventure',
+    'spectator': 'spectator',
+    '3': 'spectator'
+}
+
+
+def set_gamemode(mode: str):
+    gamemode _parse_mode(mode)
+
+def get_gamemode() -> ExpressionNode:
+    output = StaticVar(Int)
+    
+    with output.store():
+        data get entity @s playerGameType
+
+    return output
+
+def _parse_mode(mode: str) -> str:
+    return _MATCHED_MODE[str(mode)]

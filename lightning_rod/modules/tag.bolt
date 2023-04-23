@@ -1,0 +1,5 @@
+def tag(name: str):
+    tag @s add name
+
+def untag(name: str):
+    tag @s remove name
