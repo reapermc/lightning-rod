@@ -7,7 +7,7 @@
 ```json
 {
   "pack": {
-    "pack_format": 10,
+    "pack_format": 12,
     "description": ""
   }
 }
@@ -45,19 +45,32 @@ execute store result score $basic_bossbar#int$0 reapermc.wicked_expressions run 
 ```json
 {
   "values": [
-    "basic_bossbar:reapermc/wicked_expressions/scoreboard_setup",
-    "basic_bossbar:reapermc/lightning_rod/bossbar/setup",
-    "basic_bossbar:reapermc/wicked_expressions/runtime_var_flush_score"
+    "basic_bossbar:reapermc/wicked_expressions/safe_load",
+    "basic_bossbar:reapermc/lightning_rod/bossbar/setup"
   ]
 }
 ```
 
 ### basic_bossbar
 
-`@function basic_bossbar:reapermc/wicked_expressions/scoreboard_setup`
+`@function basic_bossbar:reapermc/wicked_expressions/safe_load`
+
+```mcfunction
+function basic_bossbar:reapermc/wicked_expressions/safe_load/scoreboard_setup
+function basic_bossbar:reapermc/wicked_expressions/safe_load/flush_variable/int
+```
+
+`@function basic_bossbar:reapermc/wicked_expressions/safe_load/scoreboard_setup`
 
 ```mcfunction
 scoreboard objectives add reapermc.wicked_expressions dummy
+```
+
+`@function basic_bossbar:reapermc/wicked_expressions/safe_load/flush_variable/int`
+
+```mcfunction
+scoreboard players reset $basic_bossbar#int$0 reapermc.wicked_expressions
+scoreboard players reset $basic_bossbar#int$1 reapermc.wicked_expressions
 ```
 
 `@function basic_bossbar:reapermc/lightning_rod/bossbar/setup`
@@ -66,11 +79,4 @@ scoreboard objectives add reapermc.wicked_expressions dummy
 bossbar add lightning_rod:bossbar.basic_bossbar.0 "lightning_rod:bossbar.basic_bossbar.0"
 bossbar add lightning_rod:bossbar.basic_bossbar.1 "lightning_rod:bossbar.basic_bossbar.1"
 bossbar add lightning_rod:bossbar.basic_bossbar.2 "lightning_rod:bossbar.basic_bossbar.2"
-```
-
-`@function basic_bossbar:reapermc/wicked_expressions/runtime_var_flush_score`
-
-```mcfunction
-scoreboard players reset $basic_bossbar#int$0 reapermc.wicked_expressions
-scoreboard players reset $basic_bossbar#int$1 reapermc.wicked_expressions
 ```

@@ -7,7 +7,7 @@
 ```json
 {
   "pack": {
-    "pack_format": 10,
+    "pack_format": 12,
     "description": ""
   }
 }
@@ -44,26 +44,42 @@ tellraw @s {"score": {"name": "$basic_math#int$9", "objective": "reapermc.wicked
 {
   "values": [
     "basic_math:init_expressions",
-    "basic_math:reapermc/wicked_expressions/scoreboard_setup",
-    "reapermc:lightning_rod/math/random/setup",
-    "basic_math:reapermc/wicked_expressions/runtime_var_flush_score"
+    "basic_math:reapermc/wicked_expressions/safe_load",
+    "reapermc:lightning_rod/math/random/setup"
   ]
 }
 ```
 
 ### basic_math
 
-`@function basic_math:reapermc/wicked_expressions/scoreboard_setup`
+`@function basic_math:reapermc/wicked_expressions/safe_load`
+
+```mcfunction
+function basic_math:reapermc/wicked_expressions/safe_load/scoreboard_setup
+function basic_math:reapermc/wicked_expressions/safe_load/flush_variable/int
+```
+
+`@function basic_math:reapermc/wicked_expressions/safe_load/scoreboard_setup`
 
 ```mcfunction
 scoreboard objectives add reapermc.wicked_expressions dummy
 ```
 
-`@function basic_math:reapermc/wicked_expressions/runtime_var_flush_score`
+`@function basic_math:reapermc/wicked_expressions/safe_load/flush_variable/int`
 
 ```mcfunction
 scoreboard players reset $basic_math#int$0 reapermc.wicked_expressions
 scoreboard players reset $basic_math#int$1 reapermc.wicked_expressions
+scoreboard players reset $basic_math#int$2 reapermc.wicked_expressions
+scoreboard players reset $basic_math#int$3 reapermc.wicked_expressions
+scoreboard players reset $basic_math#int$4 reapermc.wicked_expressions
+scoreboard players reset $basic_math#int$5 reapermc.wicked_expressions
+scoreboard players reset $basic_math#int$6 reapermc.wicked_expressions
+scoreboard players reset $basic_math#int$2 reapermc.wicked_expressions
+scoreboard players reset $basic_math#int$3 reapermc.wicked_expressions
+scoreboard players reset $basic_math#int$4 reapermc.wicked_expressions
+scoreboard players reset $basic_math#int$5 reapermc.wicked_expressions
+scoreboard players reset $basic_math#int$6 reapermc.wicked_expressions
 scoreboard players reset $basic_math#int$2 reapermc.wicked_expressions
 scoreboard players reset $basic_math#int$3 reapermc.wicked_expressions
 scoreboard players reset $basic_math#int$4 reapermc.wicked_expressions

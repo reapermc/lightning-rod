@@ -7,7 +7,7 @@
 ```json
 {
   "pack": {
-    "pack_format": 10,
+    "pack_format": 12,
     "description": ""
   }
 }
@@ -29,21 +29,27 @@ help
 ```json
 {
   "values": [
-    "basic_raw_cmd:reapermc/wicked_expressions/scoreboard_setup",
-    "basic_raw_cmd:reapermc/wicked_expressions/runtime_var_flush_score"
+    "basic_raw_cmd:reapermc/wicked_expressions/safe_load"
   ]
 }
 ```
 
 ### basic_raw_cmd
 
-`@function basic_raw_cmd:reapermc/wicked_expressions/scoreboard_setup`
+`@function basic_raw_cmd:reapermc/wicked_expressions/safe_load`
+
+```mcfunction
+function basic_raw_cmd:reapermc/wicked_expressions/safe_load/scoreboard_setup
+function basic_raw_cmd:reapermc/wicked_expressions/safe_load/flush_variable/int
+```
+
+`@function basic_raw_cmd:reapermc/wicked_expressions/safe_load/scoreboard_setup`
 
 ```mcfunction
 scoreboard objectives add reapermc.wicked_expressions dummy
 ```
 
-`@function basic_raw_cmd:reapermc/wicked_expressions/runtime_var_flush_score`
+`@function basic_raw_cmd:reapermc/wicked_expressions/safe_load/flush_variable/int`
 
 ```mcfunction
 scoreboard players reset $basic_raw_cmd#int$0 reapermc.wicked_expressions
