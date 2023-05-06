@@ -7,7 +7,7 @@
 ```json
 {
   "pack": {
-    "pack_format": 10,
+    "pack_format": 12,
     "description": ""
   }
 }
@@ -30,21 +30,27 @@ execute if entity @s[type=!player] run data modify entity @s ActiveEffects appen
 ```json
 {
   "values": [
-    "basic_effect:reapermc/wicked_expressions/scoreboard_setup",
-    "basic_effect:reapermc/wicked_expressions/runtime_var_flush_score"
+    "basic_effect:reapermc/wicked_expressions/safe_load"
   ]
 }
 ```
 
 ### basic_effect
 
-`@function basic_effect:reapermc/wicked_expressions/scoreboard_setup`
+`@function basic_effect:reapermc/wicked_expressions/safe_load`
+
+```mcfunction
+function basic_effect:reapermc/wicked_expressions/safe_load/scoreboard_setup
+function basic_effect:reapermc/wicked_expressions/safe_load/flush_variable/int
+```
+
+`@function basic_effect:reapermc/wicked_expressions/safe_load/scoreboard_setup`
 
 ```mcfunction
 scoreboard objectives add reapermc.wicked_expressions dummy
 ```
 
-`@function basic_effect:reapermc/wicked_expressions/runtime_var_flush_score`
+`@function basic_effect:reapermc/wicked_expressions/safe_load/flush_variable/int`
 
 ```mcfunction
 scoreboard players reset $basic_effect#int$0 reapermc.wicked_expressions

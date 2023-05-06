@@ -7,7 +7,7 @@
 ```json
 {
   "pack": {
-    "pack_format": 10,
+    "pack_format": 12,
     "description": ""
   }
 }
@@ -37,21 +37,27 @@ tellraw @a {"score": {"name": "$basic_gamemode#int$1", "objective": "reapermc.wi
 ```json
 {
   "values": [
-    "basic_gamemode:reapermc/wicked_expressions/scoreboard_setup",
-    "basic_gamemode:reapermc/wicked_expressions/runtime_var_flush_score"
+    "basic_gamemode:reapermc/wicked_expressions/safe_load"
   ]
 }
 ```
 
 ### basic_gamemode
 
-`@function basic_gamemode:reapermc/wicked_expressions/scoreboard_setup`
+`@function basic_gamemode:reapermc/wicked_expressions/safe_load`
+
+```mcfunction
+function basic_gamemode:reapermc/wicked_expressions/safe_load/scoreboard_setup
+function basic_gamemode:reapermc/wicked_expressions/safe_load/flush_variable/int
+```
+
+`@function basic_gamemode:reapermc/wicked_expressions/safe_load/scoreboard_setup`
 
 ```mcfunction
 scoreboard objectives add reapermc.wicked_expressions dummy
 ```
 
-`@function basic_gamemode:reapermc/wicked_expressions/runtime_var_flush_score`
+`@function basic_gamemode:reapermc/wicked_expressions/safe_load/flush_variable/int`
 
 ```mcfunction
 scoreboard players reset $basic_gamemode#int$0 reapermc.wicked_expressions

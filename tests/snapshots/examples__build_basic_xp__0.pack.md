@@ -7,7 +7,7 @@
 ```json
 {
   "pack": {
-    "pack_format": 10,
+    "pack_format": 12,
     "description": ""
   }
 }
@@ -37,29 +37,41 @@ function reapermc:lightning_rod/xp/set_percent
 ```json
 {
   "values": [
-    "basic_xp:reapermc/wicked_expressions/scoreboard_setup",
-    "basic_xp:reapermc/wicked_expressions/runtime_var_flush_score"
+    "basic_xp:reapermc/wicked_expressions/safe_load"
   ]
 }
 ```
 
 ### basic_xp
 
-`@function basic_xp:reapermc/wicked_expressions/scoreboard_setup`
+`@function basic_xp:reapermc/wicked_expressions/safe_load`
+
+```mcfunction
+function basic_xp:reapermc/wicked_expressions/safe_load/scoreboard_setup
+function basic_xp:reapermc/wicked_expressions/safe_load/flush_variable/int
+```
+
+`@function basic_xp:reapermc/wicked_expressions/safe_load/scoreboard_setup`
 
 ```mcfunction
 scoreboard objectives add reapermc.wicked_expressions dummy
 ```
 
-`@function basic_xp:reapermc/wicked_expressions/runtime_var_flush_score`
+`@function basic_xp:reapermc/wicked_expressions/safe_load/flush_variable/int`
 
 ```mcfunction
 scoreboard players reset $basic_xp#int$0 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$5 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$2 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$5 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$2 reapermc.wicked_expressions
 scoreboard players reset $basic_xp#int$1 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$2 reapermc.wicked_expressions
 scoreboard players reset $basic_xp#int$2 reapermc.wicked_expressions
 scoreboard players reset $basic_xp#int$3 reapermc.wicked_expressions
 scoreboard players reset $basic_xp#int$4 reapermc.wicked_expressions
-scoreboard players reset $basic_xp#int$5 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$3 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$4 reapermc.wicked_expressions
 ```
 
 ### reapermc
