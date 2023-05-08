@@ -12,3 +12,4 @@ from ./gamemode import get_gamemode, set_gamemode
 from ./math import random, sqrt, pow
 from ./time import get_gametime, get_time, get_day, set_time
 from ./xp import get_xp, get_level, set_xp, set_level, set_xp_percent
+from ./comment import add_comment
