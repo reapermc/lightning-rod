@@ -1,8 +1,7 @@
 from typing import ClassVar
 from dataclasses import dataclass
 
-from wicked_expressions:api import StaticVar, Int, ExpressionNode
-from ./rebindable import Rebindable
+from wicked_expressions:api import StaticVar, Int, ExpressionNode, Rebindable
 from ./utils import logger
 from ./raw_cmd import raw_cmd
 from ./tag import tag, untag

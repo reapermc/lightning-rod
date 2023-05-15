@@ -2,7 +2,6 @@ from ./raw_cmd import raw_cmd
 from ./advancement import grant_advancement, revoke_advancement
 from ./bossbar import Bossbar
 from ./tag import tag, untag
-from ./rebindable import Rebindable
 from ./kill import kill
 from ./cancel_momentum import cancel_momentum
 from ./effect import effect, raw_effect
