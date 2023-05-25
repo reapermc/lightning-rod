@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.1 (2023-05-16)
+### Fix
+* Version bump to fix dependency errors ([`198774e`](https://github.com/reapermc/lightning-rod/commit/198774e4a6001d07c3bd1f6ebf3c8186f1487969))
+
 ## v0.2.0 (2023-05-08)
 ### Feature
 * Add add_comment function ([`9f81e4f`](https://github.com/reapermc/lightning-rod/commit/9f81e4f32ffe2999c56547e7d475fa17b0ce890c))
