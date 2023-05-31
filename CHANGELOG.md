@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.2 (2023-05-31)
+### Fix
+
+* Wicked-expressions initializing when api module is imported ([`a45d41d`](https://github.com/reapermc/lightning-rod/commit/a45d41dbb0617b60aa14d6ed7dddaab005bdedc3))
+
 ## v0.2.1 (2023-05-16)
 ### Fix
 * Version bump to fix dependency errors ([`198774e`](https://github.com/reapermc/lightning-rod/commit/198774e4a6001d07c3bd1f6ebf3c8186f1487969))
