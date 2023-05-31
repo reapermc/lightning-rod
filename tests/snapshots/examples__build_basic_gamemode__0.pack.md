@@ -26,8 +26,8 @@ gamemode adventure
 gamemode adventure
 gamemode spectator
 gamemode spectator
-execute store result score $basic_gamemode#int$1 reapermc.wicked_expressions run data get entity @s playerGameType
-tellraw @a {"score": {"name": "$basic_gamemode#int$1", "objective": "reapermc.wicked_expressions"}}
+execute store result score $basic_gamemode#int$0 reapermc.wicked_expressions run data get entity @s playerGameType
+tellraw @a {"score": {"name": "$basic_gamemode#int$0", "objective": "reapermc.wicked_expressions"}}
 ```
 
 ### minecraft
@@ -47,19 +47,11 @@ tellraw @a {"score": {"name": "$basic_gamemode#int$1", "objective": "reapermc.wi
 `@function basic_gamemode:reapermc/wicked_expressions/safe_load`
 
 ```mcfunction
-function basic_gamemode:reapermc/wicked_expressions/safe_load/scoreboard_setup
 function basic_gamemode:reapermc/wicked_expressions/safe_load/flush_variable/int
-```
-
-`@function basic_gamemode:reapermc/wicked_expressions/safe_load/scoreboard_setup`
-
-```mcfunction
-scoreboard objectives add reapermc.wicked_expressions dummy
 ```
 
 `@function basic_gamemode:reapermc/wicked_expressions/safe_load/flush_variable/int`
 
 ```mcfunction
 scoreboard players reset $basic_gamemode#int$0 reapermc.wicked_expressions
-scoreboard players reset $basic_gamemode#int$1 reapermc.wicked_expressions
 ```

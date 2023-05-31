@@ -13,9 +13,10 @@ import inspect
 @dataclass
 class Bossbar(Rebindable):
     _bossbar_index: ClassVar[int] = 0
-    _temp: ClassVar[ExpressionNode] = StaticVar(Int)
 
     def __post_init__(self):
+        self._temp = StaticVar(Int)
+
         self._id = self._generate_unique_id()
         self._name = self._id
         self._color = 'white'

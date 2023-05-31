@@ -56,19 +56,14 @@ execute store result score $basic_bossbar#int$0 reapermc.wicked_expressions run 
 `@function basic_bossbar:reapermc/wicked_expressions/safe_load`
 
 ```mcfunction
-function basic_bossbar:reapermc/wicked_expressions/safe_load/scoreboard_setup
 function basic_bossbar:reapermc/wicked_expressions/safe_load/flush_variable/int
-```
-
-`@function basic_bossbar:reapermc/wicked_expressions/safe_load/scoreboard_setup`
-
-```mcfunction
-scoreboard objectives add reapermc.wicked_expressions dummy
 ```
 
 `@function basic_bossbar:reapermc/wicked_expressions/safe_load/flush_variable/int`
 
 ```mcfunction
+scoreboard players reset $basic_bossbar#int$0 reapermc.wicked_expressions
+scoreboard players reset $basic_bossbar#int$0 reapermc.wicked_expressions
 scoreboard players reset $basic_bossbar#int$0 reapermc.wicked_expressions
 scoreboard players reset $basic_bossbar#int$1 reapermc.wicked_expressions
 ```
