@@ -124,11 +124,11 @@ scoreboard players operation $basic_math#int$5 reapermc.wicked_expressions += $b
 ```mcfunction
 scoreboard players operation $basic_math#int$8 reapermc.wicked_expressions *= $basic_math#int$6 reapermc.wicked_expressions
 scoreboard players remove $basic_math#int$7 reapermc.wicked_expressions 1
-execute unless score $basic_math#int$7 reapermc.wicked_expressions matches ..1 if score foo tmp matches 10 run function reapermc:lightning_rod/math/pow/run
+execute unless score $basic_math#int$7 reapermc.wicked_expressions matches ..1 run function reapermc:lightning_rod/math/pow/run
 ```
 
 `@function reapermc:lightning_rod/math/random/setup`
 
 ```mcfunction
-execute unless score $basic_math#int$4 reapermc.wicked_expressions = $basic_math#int$4 reapermc.wicked_expressions if score foo tmp matches 10 store result score $basic_math#int$4 reapermc.wicked_expressions run seed
+execute unless score $basic_math#int$4 reapermc.wicked_expressions = $basic_math#int$4 reapermc.wicked_expressions store result score $basic_math#int$4 reapermc.wicked_expressions run seed
 ```
