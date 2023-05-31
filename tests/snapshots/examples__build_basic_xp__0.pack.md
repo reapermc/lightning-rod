@@ -231,34 +231,34 @@ xp add @s 1 points
 `@function reapermc:lightning_rod/xp/set_points`
 
 ```mcfunction
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 134217728.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/134217728
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 67108864.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/67108864
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 33554432.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/33554432
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 16777216.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/16777216
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 8388608.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/8388608
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 4194304.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/4194304
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 2097152.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/2097152
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 1048576.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/1048576
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 524288.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/524288
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 262144.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/262144
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 131072.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/131072
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 65536.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/65536
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 32768.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/32768
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 16384.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/16384
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 8192.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/8192
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 4096.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/4096
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 2048.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/2048
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 1024.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/1024
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 512.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/512
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 256.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/256
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 128.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/128
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 64.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/64
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 32.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/32
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 16.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/16
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 8.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/8
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 4.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/4
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 2.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/2
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 1.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_points/1
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 134217728.. run function reapermc:lightning_rod/xp/set_points/134217728
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 67108864.. run function reapermc:lightning_rod/xp/set_points/67108864
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 33554432.. run function reapermc:lightning_rod/xp/set_points/33554432
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 16777216.. run function reapermc:lightning_rod/xp/set_points/16777216
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 8388608.. run function reapermc:lightning_rod/xp/set_points/8388608
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 4194304.. run function reapermc:lightning_rod/xp/set_points/4194304
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 2097152.. run function reapermc:lightning_rod/xp/set_points/2097152
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 1048576.. run function reapermc:lightning_rod/xp/set_points/1048576
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 524288.. run function reapermc:lightning_rod/xp/set_points/524288
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 262144.. run function reapermc:lightning_rod/xp/set_points/262144
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 131072.. run function reapermc:lightning_rod/xp/set_points/131072
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 65536.. run function reapermc:lightning_rod/xp/set_points/65536
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 32768.. run function reapermc:lightning_rod/xp/set_points/32768
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 16384.. run function reapermc:lightning_rod/xp/set_points/16384
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 8192.. run function reapermc:lightning_rod/xp/set_points/8192
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 4096.. run function reapermc:lightning_rod/xp/set_points/4096
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 2048.. run function reapermc:lightning_rod/xp/set_points/2048
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 1024.. run function reapermc:lightning_rod/xp/set_points/1024
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 512.. run function reapermc:lightning_rod/xp/set_points/512
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 256.. run function reapermc:lightning_rod/xp/set_points/256
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 128.. run function reapermc:lightning_rod/xp/set_points/128
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 64.. run function reapermc:lightning_rod/xp/set_points/64
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 32.. run function reapermc:lightning_rod/xp/set_points/32
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 16.. run function reapermc:lightning_rod/xp/set_points/16
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 8.. run function reapermc:lightning_rod/xp/set_points/8
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 4.. run function reapermc:lightning_rod/xp/set_points/4
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 2.. run function reapermc:lightning_rod/xp/set_points/2
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 1.. run function reapermc:lightning_rod/xp/set_points/1
 ```
 
 `@function reapermc:lightning_rod/xp/set_levels/134217728`
@@ -460,34 +460,34 @@ xp add @s 1 levels
 `@function reapermc:lightning_rod/xp/set_levels`
 
 ```mcfunction
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 134217728.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/134217728
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 67108864.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/67108864
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 33554432.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/33554432
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 16777216.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/16777216
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 8388608.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/8388608
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 4194304.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/4194304
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 2097152.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/2097152
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 1048576.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/1048576
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 524288.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/524288
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 262144.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/262144
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 131072.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/131072
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 65536.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/65536
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 32768.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/32768
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 16384.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/16384
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 8192.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/8192
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 4096.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/4096
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 2048.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/2048
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 1024.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/1024
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 512.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/512
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 256.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/256
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 128.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/128
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 64.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/64
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 32.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/32
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 16.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/16
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 8.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/8
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 4.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/4
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 2.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/2
-execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 1.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_levels/1
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 134217728.. run function reapermc:lightning_rod/xp/set_levels/134217728
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 67108864.. run function reapermc:lightning_rod/xp/set_levels/67108864
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 33554432.. run function reapermc:lightning_rod/xp/set_levels/33554432
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 16777216.. run function reapermc:lightning_rod/xp/set_levels/16777216
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 8388608.. run function reapermc:lightning_rod/xp/set_levels/8388608
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 4194304.. run function reapermc:lightning_rod/xp/set_levels/4194304
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 2097152.. run function reapermc:lightning_rod/xp/set_levels/2097152
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 1048576.. run function reapermc:lightning_rod/xp/set_levels/1048576
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 524288.. run function reapermc:lightning_rod/xp/set_levels/524288
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 262144.. run function reapermc:lightning_rod/xp/set_levels/262144
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 131072.. run function reapermc:lightning_rod/xp/set_levels/131072
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 65536.. run function reapermc:lightning_rod/xp/set_levels/65536
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 32768.. run function reapermc:lightning_rod/xp/set_levels/32768
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 16384.. run function reapermc:lightning_rod/xp/set_levels/16384
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 8192.. run function reapermc:lightning_rod/xp/set_levels/8192
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 4096.. run function reapermc:lightning_rod/xp/set_levels/4096
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 2048.. run function reapermc:lightning_rod/xp/set_levels/2048
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 1024.. run function reapermc:lightning_rod/xp/set_levels/1024
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 512.. run function reapermc:lightning_rod/xp/set_levels/512
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 256.. run function reapermc:lightning_rod/xp/set_levels/256
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 128.. run function reapermc:lightning_rod/xp/set_levels/128
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 64.. run function reapermc:lightning_rod/xp/set_levels/64
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 32.. run function reapermc:lightning_rod/xp/set_levels/32
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 16.. run function reapermc:lightning_rod/xp/set_levels/16
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 8.. run function reapermc:lightning_rod/xp/set_levels/8
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 4.. run function reapermc:lightning_rod/xp/set_levels/4
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 2.. run function reapermc:lightning_rod/xp/set_levels/2
+execute if score $basic_xp#int$1 reapermc.wicked_expressions matches 1.. run function reapermc:lightning_rod/xp/set_levels/1
 ```
 
 `@function reapermc:lightning_rod/xp/set_percent/64`
@@ -546,13 +546,13 @@ execute store result score $basic_xp#int$4 reapermc.wicked_expressions run xp qu
 scoreboard players operation $basic_xp#int$3 reapermc.wicked_expressions = $basic_xp#int$4 reapermc.wicked_expressions
 xp set @s 8772 levels
 xp set @s 0 points
-execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 64.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_percent/64
-execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 32.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_percent/32
-execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 16.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_percent/16
-execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 8.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_percent/8
-execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 4.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_percent/4
-execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 2.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_percent/2
-execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 1.. if score foo tmp matches 10 run function reapermc:lightning_rod/xp/set_percent/1
+execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 64.. run function reapermc:lightning_rod/xp/set_percent/64
+execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 32.. run function reapermc:lightning_rod/xp/set_percent/32
+execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 16.. run function reapermc:lightning_rod/xp/set_percent/16
+execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 8.. run function reapermc:lightning_rod/xp/set_percent/8
+execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 4.. run function reapermc:lightning_rod/xp/set_percent/4
+execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 2.. run function reapermc:lightning_rod/xp/set_percent/2
+execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 1.. run function reapermc:lightning_rod/xp/set_percent/1
 scoreboard players operation $basic_xp#int$1 reapermc.wicked_expressions = $basic_xp#int$3 reapermc.wicked_expressions
 function reapermc:lightning_rod/xp/set_levels
 ```

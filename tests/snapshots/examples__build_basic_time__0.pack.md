@@ -148,22 +148,22 @@ time add 1
 
 ```mcfunction
 time set 0
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 32768.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_32768
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 16384.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_16384
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 8192.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_8192
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 4096.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_4096
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 2048.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_2048
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 1024.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_1024
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 512.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_512
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 256.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_256
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 128.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_128
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 64.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_64
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 32.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_32
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 16.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_16
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 8.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_8
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 4.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_4
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 2.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_2
-execute if score $basic_time#int$1 reapermc.wicked_expressions matches 1.. if score foo tmp matches 10 run function reapermc:lightning_rod/time/set_dynamic_1
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 32768.. run function reapermc:lightning_rod/time/set_dynamic_32768
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 16384.. run function reapermc:lightning_rod/time/set_dynamic_16384
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 8192.. run function reapermc:lightning_rod/time/set_dynamic_8192
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 4096.. run function reapermc:lightning_rod/time/set_dynamic_4096
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 2048.. run function reapermc:lightning_rod/time/set_dynamic_2048
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 1024.. run function reapermc:lightning_rod/time/set_dynamic_1024
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 512.. run function reapermc:lightning_rod/time/set_dynamic_512
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 256.. run function reapermc:lightning_rod/time/set_dynamic_256
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 128.. run function reapermc:lightning_rod/time/set_dynamic_128
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 64.. run function reapermc:lightning_rod/time/set_dynamic_64
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 32.. run function reapermc:lightning_rod/time/set_dynamic_32
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 16.. run function reapermc:lightning_rod/time/set_dynamic_16
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 8.. run function reapermc:lightning_rod/time/set_dynamic_8
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 4.. run function reapermc:lightning_rod/time/set_dynamic_4
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 2.. run function reapermc:lightning_rod/time/set_dynamic_2
+execute if score $basic_time#int$1 reapermc.wicked_expressions matches 1.. run function reapermc:lightning_rod/time/set_dynamic_1
 ```
 
 ### minecraft
