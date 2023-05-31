@@ -20,9 +20,3 @@
 ```mcfunction
 
 ```
-
-`@function demo:demo`
-
-```mcfunction
-# test comment
-```
