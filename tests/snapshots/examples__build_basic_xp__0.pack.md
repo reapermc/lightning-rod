@@ -20,8 +20,10 @@
 ```mcfunction
 xp set @s 2354 points
 scoreboard players set $basic_xp#int$0 reapermc.wicked_expressions 66
+xp set @s 0 points
 scoreboard players operation $basic_xp#int$1 reapermc.wicked_expressions = $basic_xp#int$0 reapermc.wicked_expressions
 function reapermc:lightning_rod/xp/set_points
+xp set @s 0 levels
 scoreboard players operation $basic_xp#int$1 reapermc.wicked_expressions = $basic_xp#int$0 reapermc.wicked_expressions
 function reapermc:lightning_rod/xp/set_levels
 scoreboard players set $basic_xp#int$2 reapermc.wicked_expressions 50
@@ -553,6 +555,7 @@ execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 8.. run fun
 execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 4.. run function reapermc:lightning_rod/xp/set_percent/4
 execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 2.. run function reapermc:lightning_rod/xp/set_percent/2
 execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 1.. run function reapermc:lightning_rod/xp/set_percent/1
+xp set @s 0 levels
 scoreboard players operation $basic_xp#int$1 reapermc.wicked_expressions = $basic_xp#int$3 reapermc.wicked_expressions
 function reapermc:lightning_rod/xp/set_levels
 ```
