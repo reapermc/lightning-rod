@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.3 (2023-06-23)
+### Fix
+
+* Dynamically setting xp does not reset correctly ([`7a07ed2`](https://github.com/reapermc/lightning-rod/commit/7a07ed2f40c24c4b56bba99a5e2c3768a5b66ad5))
+* Dynamically setting xp does not reset correctly ([`5ed5cd5`](https://github.com/reapermc/lightning-rod/commit/5ed5cd5f46d1dd00f50b5f8c30baae387642f793))
+* Dynamically setting xp does not reset correctly ([`961a065`](https://github.com/reapermc/lightning-rod/commit/961a065e93451e132c89adc45c2b1c46b2304cb9))
+
 ## v0.2.2 (2023-05-31)
 ### Fix
 
