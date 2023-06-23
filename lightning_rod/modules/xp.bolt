@@ -65,8 +65,9 @@ def _get_xp(mode: str) -> ExpressionNode:
 def _set_xp_from_expression(amount: ExpressionNode, mode: str):
     amt = StaticVar(Int)
 
+    raw_cmd(f"xp set @s 0 {mode}")
     amt = amount
-    
+
     execute function f"{_WORKING_DIR}/set_{mode}":
         for n in binary_progression(28, reversed=True):
             if amt >= n:
