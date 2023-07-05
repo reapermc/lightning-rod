@@ -1,4 +1,4 @@
-from wicked_expressions:api import StaticVar, Int, ExpressionNode
+from wicked_expressions:api import Var, Int, ExpressionNode
 
 
 _MATCHED_MODE = {
@@ -17,7 +17,7 @@ def set_gamemode(mode: str):
     gamemode _parse_mode(mode)
 
 def get_gamemode() -> ExpressionNode:
-    output = StaticVar(Int)
+    output = Var(Int)
     
     with output.store():
         data get entity @s playerGameType

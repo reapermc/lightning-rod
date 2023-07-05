@@ -21,19 +21,13 @@
 scoreboard players set $basic_math#int$1 reapermc.wicked_expressions 10
 scoreboard players set $basic_math#int$2 reapermc.wicked_expressions 500
 function reapermc:lightning_rod/math/random/run
-scoreboard players operation $basic_math#int$0 reapermc.wicked_expressions = $basic_math#int$5 reapermc.wicked_expressions
+scoreboard players operation $basic_math#int$6 reapermc.wicked_expressions = $basic_math#int$5 reapermc.wicked_expressions
+scoreboard players operation $basic_math#int$0 reapermc.wicked_expressions = $basic_math#int$6 reapermc.wicked_expressions
 scoreboard players set $basic_math#int$1 reapermc.wicked_expressions 2
 scoreboard players set $basic_math#int$2 reapermc.wicked_expressions 1000
 function reapermc:lightning_rod/math/random/run
-scoreboard players operation $basic_math#int$0 reapermc.wicked_expressions = $basic_math#int$5 reapermc.wicked_expressions
-scoreboard players set $basic_math#int$1 reapermc.wicked_expressions 1
-scoreboard players set $basic_math#int$2 reapermc.wicked_expressions 10
-function reapermc:lightning_rod/math/random/run
-tellraw @s {"score": {"name": "$basic_math#int$5", "objective": "reapermc.wicked_expressions"}}
-scoreboard players set $basic_math#int$6 reapermc.wicked_expressions 5
-scoreboard players set $basic_math#int$7 reapermc.wicked_expressions 3
-function reapermc:lightning_rod/math/pow/run
-tellraw @s {"score": {"name": "$basic_math#int$8", "objective": "reapermc.wicked_expressions"}}
+scoreboard players operation $basic_math#int$7 reapermc.wicked_expressions = $basic_math#int$5 reapermc.wicked_expressions
+scoreboard players operation $basic_math#int$0 reapermc.wicked_expressions = $basic_math#int$7 reapermc.wicked_expressions
 ```
 
 ### minecraft
@@ -74,19 +68,13 @@ scoreboard players reset $basic_math#int$2 reapermc.wicked_expressions
 scoreboard players reset $basic_math#int$3 reapermc.wicked_expressions
 scoreboard players reset $basic_math#int$4 reapermc.wicked_expressions
 scoreboard players reset $basic_math#int$5 reapermc.wicked_expressions
-scoreboard players reset $basic_math#int$1 reapermc.wicked_expressions
-scoreboard players reset $basic_math#int$2 reapermc.wicked_expressions
-scoreboard players reset $basic_math#int$3 reapermc.wicked_expressions
-scoreboard players reset $basic_math#int$4 reapermc.wicked_expressions
-scoreboard players reset $basic_math#int$5 reapermc.wicked_expressions
-scoreboard players reset $basic_math#int$1 reapermc.wicked_expressions
-scoreboard players reset $basic_math#int$2 reapermc.wicked_expressions
-scoreboard players reset $basic_math#int$3 reapermc.wicked_expressions
-scoreboard players reset $basic_math#int$4 reapermc.wicked_expressions
-scoreboard players reset $basic_math#int$5 reapermc.wicked_expressions
 scoreboard players reset $basic_math#int$6 reapermc.wicked_expressions
+scoreboard players reset $basic_math#int$1 reapermc.wicked_expressions
+scoreboard players reset $basic_math#int$2 reapermc.wicked_expressions
+scoreboard players reset $basic_math#int$3 reapermc.wicked_expressions
+scoreboard players reset $basic_math#int$4 reapermc.wicked_expressions
+scoreboard players reset $basic_math#int$5 reapermc.wicked_expressions
 scoreboard players reset $basic_math#int$7 reapermc.wicked_expressions
-scoreboard players reset $basic_math#int$8 reapermc.wicked_expressions
 ```
 
 `@function basic_math:init_expressions`
@@ -117,14 +105,6 @@ scoreboard players operation $basic_math#int$5 reapermc.wicked_expressions = $ba
 scoreboard players operation $basic_math#int$5 reapermc.wicked_expressions /= $8 bolt.expr.const
 scoreboard players operation $basic_math#int$5 reapermc.wicked_expressions %= $basic_math#int$3 reapermc.wicked_expressions
 scoreboard players operation $basic_math#int$5 reapermc.wicked_expressions += $basic_math#int$1 reapermc.wicked_expressions
-```
-
-`@function reapermc:lightning_rod/math/pow/run`
-
-```mcfunction
-scoreboard players operation $basic_math#int$8 reapermc.wicked_expressions *= $basic_math#int$6 reapermc.wicked_expressions
-scoreboard players remove $basic_math#int$7 reapermc.wicked_expressions 1
-execute unless score $basic_math#int$7 reapermc.wicked_expressions matches ..1 run function reapermc:lightning_rod/math/pow/run
 ```
 
 `@function reapermc:lightning_rod/math/random/setup`

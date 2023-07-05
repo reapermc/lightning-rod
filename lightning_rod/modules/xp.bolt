@@ -1,4 +1,4 @@
-from wicked_expressions:api import StaticVar, Int, ExpressionNode
+from wicked_expressions:api import Var, StaticVar, Int, ExpressionNode
 from ./raw_cmd import raw_cmd
 from ./utils import binary_progression
 from ./config import Config
@@ -29,10 +29,10 @@ def set_xp_percent(amount: int | ExpressionNode):
 
     amt = amount
 
-    execute function f"{_WORKING_DIR}/set_percent":
-        # save previous level
-        previous_level = get_level()
+    # save previous level
+    previous_level = get_level()
 
+    execute function f"{_WORKING_DIR}/set_percent":
         set_level(8772)
         set_xp(0)
 
@@ -52,14 +52,16 @@ def set_xp_percent(amount: int | ExpressionNode):
         set_level(previous_level)
 
 def _get_xp(mode: str) -> ExpressionNode:
-    output = StaticVar(Int)
+    temp = StaticVar(Int)
+    output = Var(Int)
 
-    with output.store():
+    with temp.store():
         if mode in ('p', 'points'):
             xp query @s points
         elif mode in ('l', 'levels'):
             xp query @s levels
 
+    output = temp
     return output
 
 def _set_xp_from_expression(amount: ExpressionNode, mode: str):

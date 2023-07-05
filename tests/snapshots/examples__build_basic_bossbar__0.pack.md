@@ -29,10 +29,10 @@ bossbar set lightning_rod:bossbar.basic_bossbar.0 players @a[tag=lightning_rod.b
 bossbar set lightning_rod:bossbar.basic_bossbar.0 visible true
 bossbar set lightning_rod:bossbar.basic_bossbar.0 visible false
 bossbar set lightning_rod:bossbar.basic_bossbar.0 value 10
-scoreboard players operation $basic_bossbar#int$0 reapermc.wicked_expressions = $basic_bossbar#int$1 reapermc.wicked_expressions
+scoreboard players operation $basic_bossbar#int$0 reapermc.wicked_expressions = $basic_bossbar#int$3 reapermc.wicked_expressions
 execute store result bossbar lightning_rod:bossbar.basic_bossbar.0 value run scoreboard players get $basic_bossbar#int$0 reapermc.wicked_expressions
 bossbar set lightning_rod:bossbar.basic_bossbar.0 max 100
-scoreboard players operation $basic_bossbar#int$0 reapermc.wicked_expressions = $basic_bossbar#int$1 reapermc.wicked_expressions
+scoreboard players operation $basic_bossbar#int$0 reapermc.wicked_expressions = $basic_bossbar#int$3 reapermc.wicked_expressions
 execute store result bossbar lightning_rod:bossbar.basic_bossbar.0 max run scoreboard players get $basic_bossbar#int$0 reapermc.wicked_expressions
 execute store result score $basic_bossbar#int$0 reapermc.wicked_expressions run bossbar get lightning_rod:bossbar.basic_bossbar.0 value
 execute store result score $basic_bossbar#int$0 reapermc.wicked_expressions run bossbar get lightning_rod:bossbar.basic_bossbar.0 max
@@ -63,9 +63,9 @@ function basic_bossbar:reapermc/wicked_expressions/safe_load/flush_variable/int
 
 ```mcfunction
 scoreboard players reset $basic_bossbar#int$0 reapermc.wicked_expressions
-scoreboard players reset $basic_bossbar#int$0 reapermc.wicked_expressions
-scoreboard players reset $basic_bossbar#int$0 reapermc.wicked_expressions
 scoreboard players reset $basic_bossbar#int$1 reapermc.wicked_expressions
+scoreboard players reset $basic_bossbar#int$2 reapermc.wicked_expressions
+scoreboard players reset $basic_bossbar#int$3 reapermc.wicked_expressions
 ```
 
 `@function basic_bossbar:reapermc/lightning_rod/bossbar/setup`

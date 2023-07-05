@@ -1,4 +1,4 @@
-from wicked_expressions:api import StaticVar, Int, ExpressionNode
+from wicked_expressions:api import Var, Int, ExpressionNode
 from ./raw_cmd import raw_cmd
 from ./utils import binary_progression
 from ./config import Config
@@ -17,7 +17,7 @@ def get_day() -> ExpressionNode:
     return _get('day')
 
 def set_time(value: int | ExpressionNode):
-    output = StaticVar(Int)
+    output = Var(Int)
 
     if not isinstance(value, ExpressionNode):
         time set value
@@ -38,7 +38,7 @@ def set_time(value: int | ExpressionNode):
                     time add n
 
 def _get(mode: str) -> ExpressionNode:
-    output = StaticVar(Int)
+    output = Var(Int)
 
     with output.store():
         raw_cmd(f"time query {mode}")
