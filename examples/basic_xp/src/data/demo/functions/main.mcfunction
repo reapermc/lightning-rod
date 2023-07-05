@@ -10,8 +10,6 @@ set_xp(x)
 set_level(x)
 
 
-# # help
-
 
 set_xp_percent(50)
 set_xp_percent(100)

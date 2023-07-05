@@ -1,7 +1,7 @@
 from typing import ClassVar
 from dataclasses import dataclass
 
-from wicked_expressions:api import StaticVar, Int, ExpressionNode, Rebindable
+from wicked_expressions:api import Var, Int, ExpressionNode, Rebindable
 from ./utils import logger
 from ./raw_cmd import raw_cmd
 from ./tag import tag, untag
@@ -15,7 +15,7 @@ class Bossbar(Rebindable):
     _bossbar_index: ClassVar[int] = 0
 
     def __post_init__(self):
-        self._temp = StaticVar(Int)
+        self._temp = Var(Int)
 
         self._id = self._generate_unique_id()
         self._name = self._id
