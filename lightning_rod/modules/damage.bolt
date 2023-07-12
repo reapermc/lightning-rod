@@ -1,0 +1,73 @@
+from wicked_expressions:api import StaticVar, Int, Bool, ExpressionNode
+from ./raw_cmd import raw_cmd
+from ./config import Config
+from ./utils import binary_progression
+
+
+cached_death_messages = set()
+const_cached_death_messages = set()
+
+
+def damage(amount, exhaustion=0, death_message='generic', scaling='never'):
+    if not isinstance(amount, ExpressionNode):
+        base_1 = f"{Config.ROOT}/const/{death_message}/base"
+
+        if death_message not in const_cached_death_messages:
+            damage_type base_1 {
+                "message_id": death_message,
+                "exhaustion": exhaustion,
+                "scaling": scaling
+            }
+
+        return raw_cmd(f"damage @s {amount} {base_1}")
+
+    iframe_active = StaticVar(Bool)
+    remaining_damage = StaticVar(Int)
+    remaining_damage = amount
+
+    base_ignore_cd = f"{Config.ROOT}/{death_message}/base_ignore_cd"
+    base = f"{Config.ROOT}/{death_message}/base"
+
+    function f"{Config.ROOT}/damage/{death_message}"
+
+    # caches target death message
+    if death_message not in cached_death_messages:
+        cached_death_messages.add(death_message)
+
+        function f"{Config.ROOT}/damage/{death_message}":
+            # iframe check
+            with iframe_active.store(mode='success'):
+                damage @s 1
+
+            if not iframe_active:
+                raw_cmd('return 0')
+
+            remaining_damage -= 1
+
+            for enum, bin_increment in enumerate(binary_progression(12, reversed=True)):
+                if enum == 0:
+                    if remaining_damage >= bin_increment:
+                        raw_cmd(f"damage @s {bin_increment} {base}")
+                        remaining_damage -= bin_increment
+                    continue
+
+                if remaining_damage >= bin_increment:
+                    raw_cmd(f"damage @s {bin_increment} {base_ignore_cd}")
+                    remaining_damage -= bin_increment
+
+        damage_type base_ignore_cd {
+            "message_id": death_message,
+            "exhaustion": exhaustion,
+            "scaling": scaling
+        }
+
+        damage_type base {
+            "message_id": death_message,
+            "exhaustion": exhaustion,
+            "scaling": scaling
+        }
+
+        merge damage_type_tag minecraft:bypasses_cooldown {"values": [base_ignore_cd]}
+        # merge damage_type_tag minecraft:bypasses_armor {"values": [base_ignore_cd]}
+        # merge damage_type_tag minecraft:bypasses_resistance {"values": [base_ignore_cd]}
+        # merge damage_type_tag minecraft:bypasses_enchantments {"values": [base_ignore_cd]}
