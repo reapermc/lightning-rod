@@ -2,6 +2,15 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.4 (2023-07-05)
+### Fix
+
+* Get-type functions output gets overriden due to StaticVar usage ([`55cf8d3`](https://github.com/reapermc/lightning-rod/commit/55cf8d354fc18f0f047afa0f5415761cb32decd1))
+
+### Documentation
+
+* Update readme ([`87b37f1`](https://github.com/reapermc/lightning-rod/commit/87b37f137cba533d0b674339e26676ea0b948a53))
+
 ## v0.2.3 (2023-06-23)
 ### Fix
 
