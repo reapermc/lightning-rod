@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.5 (2023-07-12)
+### Fix
+
+* Update dependencies ([`d908310`](https://github.com/reapermc/lightning-rod/commit/d9083106907a1fe262c6dfc7874cbaeda69529ec))
+* Update dependencies ([`5c166c0`](https://github.com/reapermc/lightning-rod/commit/5c166c0d7e505f6d9eb7d242b57583680f1b9d4b))
+
 ## v0.2.4 (2023-07-05)
 ### Fix
 
