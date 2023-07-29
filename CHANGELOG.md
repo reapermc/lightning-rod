@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.0 (2023-07-12)
+### Feature
+
+* Add damage function ([`750e0a8`](https://github.com/reapermc/lightning-rod/commit/750e0a875aea0c833d9ccbe15a80a1dd2edfa3cf))
+
 ## v0.2.5 (2023-07-12)
 ### Fix
 

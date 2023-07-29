@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lightning_rod"
-version = "0.2.5"
+version = "0.3.0"
 description = "Function library for the Bolt scripting language."
 authors = ["ArcticYeti <arcticyeti1@gmail.com>"]
 license = "MIT"
