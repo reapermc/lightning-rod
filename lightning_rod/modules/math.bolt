@@ -1,9 +1,9 @@
-from wicked_expressions:api import Var, StaticVar, Int, ExpressionNode
+from wicked_expressions:api import Data, Var, StaticVar, Int, Float, ExpressionNode
 from ./config import Config
-
 
 _WORKING_DIR = f"{Config.ROOT}/math"
 
+pi = StaticVar(Float)
 
 def random(value_min: int | ExpressionNode, value_max: int | ExpressionNode) -> ExpressionNode:
     min = StaticVar(Int)
@@ -36,7 +36,6 @@ def random(value_min: int | ExpressionNode, value_max: int | ExpressionNode) -> 
     output = temp
     return output
 
-
 def pow(val: int | ExpressionNode, exp: int | ExpressionNode) -> ExpressionNode:
     value = StaticVar(Int)
     exponent = StaticVar(Int)
@@ -57,7 +56,6 @@ def pow(val: int | ExpressionNode, exp: int | ExpressionNode) -> ExpressionNode:
 
     output = temp
     return output
-
 
 def sqrt(val: int | ExpressionNode) -> ExpressionNode:
     a = StaticVar(Int)
@@ -94,4 +92,47 @@ def sqrt(val: int | ExpressionNode) -> ExpressionNode:
         temp *= -1
 
     output = temp
+    return output
+
+def sin(degrees_: int | float | ExpressionNode):
+    degrees = StaticVar(Float)
+    in_value = StaticVar(Int)
+    temp = StaticVar(Int)
+    temp2 = StaticVar(Int)
+    output = Var(Float)
+
+    degrees = degrees_
+    in_value = degrees * 10
+    temp2 = (in_value - 1800) % 1800 - 900
+    temp2 *= temp2
+    temp = (temp2 + 3240000) / 1000
+    temp2 = (temp2 * -4 + 3240000) / temp
+
+    temp = in_value % 3600
+    if temp >= 1800:
+        temp2 *= -1
+
+    output = Data.cast(temp2 / 1000, 'float')
+    return output
+
+def cos(degrees_: int | float | ExpressionNode):
+    degrees = StaticVar(Float)
+    in_value = StaticVar(Int)
+    input = StaticVar(Int)
+    temp = StaticVar(Int)
+    temp2 = StaticVar(Int)
+    output = Var(Float)
+
+    degrees = degrees_
+    in_value = degrees * 10
+    temp2 = (in_value - 900) % 1800 - 900
+    temp2 *= temp2
+    temp = (temp2 + 3240000) / 1000
+    temp2 = (temp2 * -4 + 3240000) / temp
+
+    temp = (in_value + 900) % 3600
+    if temp >= 1800:
+        temp2 *= -1
+
+    output = Data.cast(temp2 / 1000, 'float')
     return output

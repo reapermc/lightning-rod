@@ -38,6 +38,59 @@ scoreboard players operation $basic_xp#int$3 reapermc.wicked_expressions = $basi
 function reapermc:lightning_rod/xp/set_percent
 ```
 
+### minecraft
+
+`@function_tag minecraft:load`
+
+```json
+{
+  "values": [
+    "basic_xp:reapermc/wicked_expressions/safe_load"
+  ]
+}
+```
+
+### basic_xp
+
+`@function basic_xp:reapermc/wicked_expressions/safe_load`
+
+```mcfunction
+function basic_xp:reapermc/wicked_expressions/safe_load/flush_variable/float
+function basic_xp:reapermc/wicked_expressions/safe_load/scoreboard_setup
+function basic_xp:reapermc/wicked_expressions/safe_load/flush_variable/int
+```
+
+`@function basic_xp:reapermc/wicked_expressions/safe_load/flush_variable/float`
+
+```mcfunction
+data remove storage reapermc:wicked_expressions basic_xp.data.float
+data modify storage reapermc:wicked_expressions basic_xp.data.float append value [0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f]
+```
+
+`@function basic_xp:reapermc/wicked_expressions/safe_load/scoreboard_setup`
+
+```mcfunction
+scoreboard objectives add reapermc.wicked_expressions dummy
+```
+
+`@function basic_xp:reapermc/wicked_expressions/safe_load/flush_variable/int`
+
+```mcfunction
+scoreboard players reset $basic_xp#int$1 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$1 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$0 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$1 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$1 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$2 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$3 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$4 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$5 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$2 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$3 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$4 reapermc.wicked_expressions
+scoreboard players reset $basic_xp#int$6 reapermc.wicked_expressions
+```
+
 ### reapermc
 
 `@function reapermc:lightning_rod/xp/set_points/134217728`
@@ -562,49 +615,4 @@ execute if score $basic_xp#int$2 reapermc.wicked_expressions matches 1.. run fun
 xp set @s 0 levels
 scoreboard players operation $basic_xp#int$1 reapermc.wicked_expressions = $basic_xp#int$3 reapermc.wicked_expressions
 function reapermc:lightning_rod/xp/set_levels
-```
-
-### minecraft
-
-`@function_tag minecraft:load`
-
-```json
-{
-  "values": [
-    "basic_xp:reapermc/wicked_expressions/safe_load"
-  ]
-}
-```
-
-### basic_xp
-
-`@function basic_xp:reapermc/wicked_expressions/safe_load`
-
-```mcfunction
-function basic_xp:reapermc/wicked_expressions/safe_load/scoreboard_setup
-function basic_xp:reapermc/wicked_expressions/safe_load/flush_variable/int
-```
-
-`@function basic_xp:reapermc/wicked_expressions/safe_load/scoreboard_setup`
-
-```mcfunction
-scoreboard objectives add reapermc.wicked_expressions dummy
-```
-
-`@function basic_xp:reapermc/wicked_expressions/safe_load/flush_variable/int`
-
-```mcfunction
-scoreboard players reset $basic_xp#int$1 reapermc.wicked_expressions
-scoreboard players reset $basic_xp#int$1 reapermc.wicked_expressions
-scoreboard players reset $basic_xp#int$0 reapermc.wicked_expressions
-scoreboard players reset $basic_xp#int$1 reapermc.wicked_expressions
-scoreboard players reset $basic_xp#int$1 reapermc.wicked_expressions
-scoreboard players reset $basic_xp#int$2 reapermc.wicked_expressions
-scoreboard players reset $basic_xp#int$3 reapermc.wicked_expressions
-scoreboard players reset $basic_xp#int$4 reapermc.wicked_expressions
-scoreboard players reset $basic_xp#int$5 reapermc.wicked_expressions
-scoreboard players reset $basic_xp#int$2 reapermc.wicked_expressions
-scoreboard players reset $basic_xp#int$3 reapermc.wicked_expressions
-scoreboard players reset $basic_xp#int$4 reapermc.wicked_expressions
-scoreboard players reset $basic_xp#int$6 reapermc.wicked_expressions
 ```

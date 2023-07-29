@@ -47,7 +47,15 @@ tellraw @a {"score": {"name": "$basic_gamemode#int$0", "objective": "reapermc.wi
 `@function basic_gamemode:reapermc/wicked_expressions/safe_load`
 
 ```mcfunction
+function basic_gamemode:reapermc/wicked_expressions/safe_load/flush_variable/float
 function basic_gamemode:reapermc/wicked_expressions/safe_load/flush_variable/int
+```
+
+`@function basic_gamemode:reapermc/wicked_expressions/safe_load/flush_variable/float`
+
+```mcfunction
+data remove storage reapermc:wicked_expressions basic_gamemode.data.float
+data modify storage reapermc:wicked_expressions basic_gamemode.data.float append value [0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f]
 ```
 
 `@function basic_gamemode:reapermc/wicked_expressions/safe_load/flush_variable/int`

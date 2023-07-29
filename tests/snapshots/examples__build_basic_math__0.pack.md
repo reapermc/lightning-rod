@@ -49,8 +49,16 @@ scoreboard players operation $basic_math#int$0 reapermc.wicked_expressions = $ba
 `@function basic_math:reapermc/wicked_expressions/safe_load`
 
 ```mcfunction
+function basic_math:reapermc/wicked_expressions/safe_load/flush_variable/float
 function basic_math:reapermc/wicked_expressions/safe_load/scoreboard_setup
 function basic_math:reapermc/wicked_expressions/safe_load/flush_variable/int
+```
+
+`@function basic_math:reapermc/wicked_expressions/safe_load/flush_variable/float`
+
+```mcfunction
+data remove storage reapermc:wicked_expressions basic_math.data.float
+data modify storage reapermc:wicked_expressions basic_math.data.float append value [0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f]
 ```
 
 `@function basic_math:reapermc/wicked_expressions/safe_load/scoreboard_setup`
