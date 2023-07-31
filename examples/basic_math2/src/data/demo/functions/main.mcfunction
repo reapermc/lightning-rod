@@ -10,4 +10,8 @@ tellraw @a ["out: ", cos(degrees)]
 
 
 
+tellraw @a sin(degrees)
+tellraw @a sin(degrees)
+
+
 

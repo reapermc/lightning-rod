@@ -1,11 +1,11 @@
-from wicked_expressions:api import Data, Var, StaticVar, Int, Float, ExpressionNode
+from wicked_expressions:api import Data, Var, StaticVar, Int, Bool, Float, ExpressionNode
 from ./config import Config
+from ./utils import binary_progression
 
 _WORKING_DIR = f"{Config.ROOT}/math"
 
-pi = StaticVar(Float)
-
 def random(value_min: int | ExpressionNode, value_max: int | ExpressionNode) -> ExpressionNode:
+    # random.randint(min, max)
     min = StaticVar(Int)
     max = StaticVar(Int)
     size = StaticVar(Int)
@@ -36,7 +36,7 @@ def random(value_min: int | ExpressionNode, value_max: int | ExpressionNode) -> 
     output = temp
     return output
 
-def pow(val: int | ExpressionNode, exp: int | ExpressionNode) -> ExpressionNode:
+def power(val: int | ExpressionNode, exp: int | ExpressionNode) -> ExpressionNode:
     value = StaticVar(Int)
     exponent = StaticVar(Int)
     temp = StaticVar(Int)
@@ -45,6 +45,7 @@ def pow(val: int | ExpressionNode, exp: int | ExpressionNode) -> ExpressionNode:
     run_path = f"{_WORKING_DIR}/pow/run"
 
     value = val
+    temp = value
     exponent = exp
 
     execute function run_path:
@@ -57,44 +58,29 @@ def pow(val: int | ExpressionNode, exp: int | ExpressionNode) -> ExpressionNode:
     output = temp
     return output
 
-def sqrt(val: int | ExpressionNode) -> ExpressionNode:
-    a = StaticVar(Int)
-    b = StaticVar(Int)
+def sqrt(value_: int | ExpressionNode) -> ExpressionNode:
     value = StaticVar(Int)
     temp = StaticVar(Int)
+    temp2 = StaticVar(Int)
     output = Var(Int)
 
-    run_path = '{_WORKING_DIR}/sqrt/run'
+    run_path = f"{_WORKING_DIR}/sqrt/run"
+    value = value_
 
-    value = val
+    execute function run_path:
+        temp2 = 0
 
-    if value >= 214748:
-        tellraw @a [{"text":f"\n{Config.LIBRARY_NAME} ","color":"gray"},{"text":" ERROR 'sqrt()' overflow. Input value of ","color":"red"},{"score":{"name": value.holder, "objective": value.obj},"color":"red"},{"text":" is too large.","color":"red"}]
-    if value < 0:
-        tellraw @a [{"text":f"\n{Config.LIBRARY_NAME} ","color":"gray"},{"text":" ERROR 'sqrt()' received input value ","color":"red"},{"score":{"name": value.holder, "objective": value.obj},"color":"red"},{"text":". Negative input values not supported.","color":"red"}]
+        for binary_increment in binary_progression(16, reversed=True):
+            temp = temp2 + binary_increment
+            temp *= temp
+            if temp <= value:
+                temp2 += binary_increment
 
-    b = value
-    value *= 10000
-    temp = 1255
-
-    for _ in range(4):
-        execute function run_path:
-            a = value / temp
-            temp += a
-            temp /= 2
-
-    if b >= 10000:
-        function run_path
-    if b >= 100000:
-        function run_path
-
-    if temp <= 0:
-        temp *= -1
-
-    output = temp
+    output = temp2
     return output
 
 def sin(degrees_: int | float | ExpressionNode):
+    # math.sin(math.radians(foo))
     degrees = StaticVar(Float)
     in_value = StaticVar(Int)
     temp = StaticVar(Int)
@@ -116,6 +102,7 @@ def sin(degrees_: int | float | ExpressionNode):
     return output
 
 def cos(degrees_: int | float | ExpressionNode):
+    # math.cos(math.radians(foo))
     degrees = StaticVar(Float)
     in_value = StaticVar(Int)
     input = StaticVar(Int)
@@ -135,4 +122,66 @@ def cos(degrees_: int | float | ExpressionNode):
         temp2 *= -1
 
     output = Data.cast(temp2 / 1000, 'float')
+    return output
+
+def atan2(x_: int | float | ExpressionNode, y_: int | float | ExpressionNode):
+    x = StaticVar(Int)
+    y = StaticVar(Int)
+    quadrant_x = StaticVar(Int)
+    quadrant_y = StaticVar(Int)
+    temp_0 = StaticVar(Int)
+    temp_1 = StaticVar(Int)
+    temp_2 = StaticVar(Int)
+    temp_3 = StaticVar(Int)
+    temp_4 = StaticVar(Int)
+    input_swap = StaticVar(Bool)
+    temp_output = StaticVar(Int)
+    output = Var(Int)
+
+    x = x_
+    y = y_
+
+    quadrant_x = 1
+    if x < 0:
+        quadrant_x = -1
+        x *= -1
+
+    quadrant_y = 1
+    if y < 0:
+        quadrant_y = -1
+        y *= -1
+
+    input_swap = False
+    if x < y:
+        input_swap = True
+        scoreboard players operation x.holder x.obj >< y.holder y.obj       # ew
+
+    temp_0 = y * 1000 / x
+    temp_1 = temp_0
+    temp_0 = temp_0 * temp_0 / 1000
+
+    temp_2 = 776
+    temp_3 = -2874
+    temp_4 = 9951
+
+    temp_4 = temp_4 * temp_1 / 10000
+    temp_1 = temp_1 * temp_0 / 1000
+    temp_3 = temp_3 * temp_1 / 10000
+    temp_1 = temp_1 * temp_0 / 1000
+    temp_2 = temp_2 * temp_1 / 10000
+    temp_output = (temp_2 + temp_3 + temp_4) * 900 / 1570
+
+    if input_swap:
+        temp_output = temp_output * -1 + 900
+
+    if quadrant_x == -1:
+        if quadrant_y == -1:
+            temp_output -= 1800
+        elif quadrant_y == 1:
+            temp_output = temp_output * -1 + 1800
+    elif quadrant_x == 1:
+        if quadrant_y == -1:
+            temp_output *= -1
+
+    output = temp_output
     return output

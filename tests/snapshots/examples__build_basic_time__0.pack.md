@@ -30,52 +30,6 @@ scoreboard players operation $basic_time#int$5 reapermc.wicked_expressions = $ba
 function reapermc:lightning_rod/time/set_dynamic
 ```
 
-### minecraft
-
-`@function_tag minecraft:load`
-
-```json
-{
-  "values": [
-    "basic_time:reapermc/wicked_expressions/safe_load"
-  ]
-}
-```
-
-### basic_time
-
-`@function basic_time:reapermc/wicked_expressions/safe_load`
-
-```mcfunction
-function basic_time:reapermc/wicked_expressions/safe_load/flush_variable/float
-function basic_time:reapermc/wicked_expressions/safe_load/scoreboard_setup
-function basic_time:reapermc/wicked_expressions/safe_load/flush_variable/int
-```
-
-`@function basic_time:reapermc/wicked_expressions/safe_load/flush_variable/float`
-
-```mcfunction
-data remove storage reapermc:wicked_expressions basic_time.data.float
-data modify storage reapermc:wicked_expressions basic_time.data.float append value [0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f]
-```
-
-`@function basic_time:reapermc/wicked_expressions/safe_load/scoreboard_setup`
-
-```mcfunction
-scoreboard objectives add reapermc.wicked_expressions dummy
-```
-
-`@function basic_time:reapermc/wicked_expressions/safe_load/flush_variable/int`
-
-```mcfunction
-scoreboard players reset $basic_time#int$0 reapermc.wicked_expressions
-scoreboard players reset $basic_time#int$1 reapermc.wicked_expressions
-scoreboard players reset $basic_time#int$2 reapermc.wicked_expressions
-scoreboard players reset $basic_time#int$3 reapermc.wicked_expressions
-scoreboard players reset $basic_time#int$4 reapermc.wicked_expressions
-scoreboard players reset $basic_time#int$5 reapermc.wicked_expressions
-```
-
 ### reapermc
 
 `@function reapermc:lightning_rod/time/set_dynamic_32768`
@@ -210,4 +164,42 @@ execute if score $basic_time#int$5 reapermc.wicked_expressions matches 8.. run f
 execute if score $basic_time#int$5 reapermc.wicked_expressions matches 4.. run function reapermc:lightning_rod/time/set_dynamic_4
 execute if score $basic_time#int$5 reapermc.wicked_expressions matches 2.. run function reapermc:lightning_rod/time/set_dynamic_2
 execute if score $basic_time#int$5 reapermc.wicked_expressions matches 1.. run function reapermc:lightning_rod/time/set_dynamic_1
+```
+
+### minecraft
+
+`@function_tag minecraft:load`
+
+```json
+{
+  "values": [
+    "basic_time:reapermc/wicked_expressions/safe_load"
+  ]
+}
+```
+
+### basic_time
+
+`@function basic_time:reapermc/wicked_expressions/safe_load`
+
+```mcfunction
+function basic_time:reapermc/wicked_expressions/safe_load/scoreboard_setup
+function basic_time:reapermc/wicked_expressions/safe_load/flush_variable/int
+```
+
+`@function basic_time:reapermc/wicked_expressions/safe_load/scoreboard_setup`
+
+```mcfunction
+scoreboard objectives add reapermc.wicked_expressions dummy
+```
+
+`@function basic_time:reapermc/wicked_expressions/safe_load/flush_variable/int`
+
+```mcfunction
+scoreboard players reset $basic_time#int$0 reapermc.wicked_expressions
+scoreboard players reset $basic_time#int$1 reapermc.wicked_expressions
+scoreboard players reset $basic_time#int$2 reapermc.wicked_expressions
+scoreboard players reset $basic_time#int$3 reapermc.wicked_expressions
+scoreboard players reset $basic_time#int$4 reapermc.wicked_expressions
+scoreboard players reset $basic_time#int$5 reapermc.wicked_expressions
 ```

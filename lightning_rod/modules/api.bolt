@@ -8,8 +8,9 @@ from ./effect import effect, raw_effect
 from ./give import give
 from ./clear import clear
 from ./gamemode import get_gamemode, set_gamemode
-from ./math import random, sqrt, pow, sin, cos
+from ./math import random, sqrt, power, sin, cos
 from ./time import get_gametime, get_time, get_day, set_time
 from ./xp import get_xp, get_level, set_xp, set_level, set_xp_percent
 from ./comment import add_comment
 from ./damage import damage
+from ./offset_rotation import offset_rotation_facing_caret

@@ -56,15 +56,7 @@ execute store result score $basic_bossbar#int$0 reapermc.wicked_expressions run 
 `@function basic_bossbar:reapermc/wicked_expressions/safe_load`
 
 ```mcfunction
-function basic_bossbar:reapermc/wicked_expressions/safe_load/flush_variable/float
 function basic_bossbar:reapermc/wicked_expressions/safe_load/flush_variable/int
-```
-
-`@function basic_bossbar:reapermc/wicked_expressions/safe_load/flush_variable/float`
-
-```mcfunction
-data remove storage reapermc:wicked_expressions basic_bossbar.data.float
-data modify storage reapermc:wicked_expressions basic_bossbar.data.float append value [0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f]
 ```
 
 `@function basic_bossbar:reapermc/wicked_expressions/safe_load/flush_variable/int`

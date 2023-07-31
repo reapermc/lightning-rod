@@ -1,0 +1,112 @@
+from wicked_expressions:api import Data, StaticVar, Var, Int, Float, List, this, ExpressionNode
+from ./math import sin, cos, atan2, sqrt, power
+from ./utils import logger
+
+def _matrix_from_gimbal_3d(yaw_angle_, pitch_angle_):
+    yaw_angle = StaticVar(Float)
+    pitch_angle = StaticVar(Float)
+    sin_x = StaticVar(Int)
+    cos_x = StaticVar(Int)
+    sin_y = StaticVar(Int)
+    cos_y = StaticVar(Int)
+    matrix = Var(List)
+
+    yaw_angle = yaw_angle_
+    pitch_angle = pitch_angle_
+
+    sin_x = sin(pitch_angle) * 1000
+    cos_x = cos(pitch_angle) * 1000
+    sin_y = sin(yaw_angle) * 1000
+    cos_y = cos(yaw_angle) * 1000
+
+    matrix = [[0, 0, 0],[0, 0, 0],[0, 0, 0]]
+
+    matrix[0][0] = cos_y
+    matrix[0][1] = 0
+    matrix[0][2] = sin_y
+
+    matrix[1][0] = Data.cast(sin_y * sin_x * -1 / 1000, 'int')
+    matrix[1][1] = cos_x
+    matrix[1][2] = Data.cast(cos_y * sin_x / 1000, 'int')
+
+    matrix[2][0] = Data.cast(sin_y * cos_x * -1 / 1000, 'int')
+    matrix[2][1] = sin_x * -1
+    matrix[2][2] = Data.cast(cos_y * cos_x / 1000, 'int')
+
+    return matrix
+
+def _transform_matrix_3d(matrix, vector_x, vector_y, vector_z):
+    vector_0 = StaticVar(Int)
+    vector_1 = StaticVar(Int)
+    vector_2 = StaticVar(Int)
+    output_vector_x = Var(Int)
+    output_vector_y = Var(Int)
+    output_vector_z = Var(Int)
+
+    vector_0 = matrix[0][0]
+    vector_1 = matrix[1][0]
+    vector_2 = matrix[2][0]
+    vector_0 *= vector_x
+    vector_1 *= vector_y
+    vector_2 *= vector_z
+    output_vector_x = (vector_0 + vector_1 + vector_2) / 1000
+
+    vector_0 = matrix[0][1]
+    vector_1 = matrix[1][1]
+    vector_2 = matrix[2][1]
+    vector_0 *= vector_x
+    vector_1 *= vector_y
+    vector_2 *= vector_z
+    output_vector_y = (vector_0 + vector_1 + vector_2) / 1000
+
+    vector_0 = matrix[0][2]
+    vector_1 = matrix[1][2]
+    vector_2 = matrix[2][2]
+    vector_0 *= vector_x
+    vector_1 *= vector_y
+    vector_2 *= vector_z
+    output_vector_z = (vector_0 + vector_1 + vector_2) / 1000
+
+    return (output_vector_x, output_vector_y, output_vector_z)
+
+def _vector_to_gimbal_3d(vector_x_, vector_y_, vector_z_):
+    in_vector_x = StaticVar(Int)
+    in_vector_y = StaticVar(Int)
+    in_vector_z = StaticVar(Int)
+    scale_factor = StaticVar(Int)
+    output_rotation = Var(List)
+
+    scale_factor = 1
+
+    in_vector_x = vector_x_
+    in_vector_y = vector_y_
+    in_vector_z = vector_z_
+
+    output_rotation = [Float(0.0), Float(0.0)]
+    output_rotation[0] = Data.cast(atan2(in_vector_z, in_vector_x*-1) / 10, 'float')
+    output_rotation[1] = Data.cast(atan2(sqrt(power(in_vector_x / scale_factor, 2)+power(in_vector_z / scale_factor, 2))*scale_factor, in_vector_y*-1) / 10, 'float')
+
+    return output_rotation
+
+def offset_rotation_facing_caret(x: int | float | ExpressionNode,
+                                 y: int | float | ExpressionNode,
+                                 z: int | float | ExpressionNode):
+
+    if not isinstance(x, ExpressionNode) or not isinstance(y, ExpressionNode) or not isinstance(z, ExpressionNode):
+        at @s tp @s ~ ~ ~ facing ^x ^y ^z
+        return
+
+    vector_x = StaticVar(Int)
+    vector_y = StaticVar(Int)
+    vector_z = StaticVar(Int)
+
+    vector_x = x * 1000
+    vector_y = y * 1000
+    vector_z = z * 1000
+
+    copied_rotation = StaticVar(List)
+    copied_rotation = this.Rotation
+    matrix = _matrix_from_gimbal_3d(copied_rotation[0], copied_rotation[1])
+    t_vector_x, t_vector_y, t_vector_z = _transform_matrix_3d(matrix, vector_x, vector_y, vector_z)
+    new_rotation = _vector_to_gimbal_3d(t_vector_x, t_vector_y, t_vector_z)
+    this.Rotation = new_rotation

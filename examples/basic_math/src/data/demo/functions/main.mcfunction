@@ -1,4 +1,4 @@
-from lightning_rod:api import random, pow
+from lightning_rod:api import random, power
 from wicked_expressions:api import Var, Int
 
 

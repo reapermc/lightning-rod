@@ -28,68 +28,6 @@ function reapermc:lightning_rod/damage/generic
 damage @s 5 reapermc:lightning_rod/const/generic/base
 ```
 
-### minecraft
-
-`@function_tag minecraft:load`
-
-```json
-{
-  "values": [
-    "basic_damage:reapermc/wicked_expressions/safe_load"
-  ]
-}
-```
-
-`@damage_type_tag minecraft:bypasses_cooldown`
-
-```json
-{
-  "values": [
-    "reapermc:lightning_rod/drown/base_ignore_cd",
-    "reapermc:lightning_rod/generic/base_ignore_cd"
-  ]
-}
-```
-
-### basic_damage
-
-`@function basic_damage:reapermc/wicked_expressions/safe_load`
-
-```mcfunction
-function basic_damage:reapermc/wicked_expressions/safe_load/flush_variable/float
-function basic_damage:reapermc/wicked_expressions/safe_load/scoreboard_setup
-function basic_damage:reapermc/wicked_expressions/safe_load/flush_variable/int
-function basic_damage:reapermc/wicked_expressions/safe_load/flush_variable/bool
-```
-
-`@function basic_damage:reapermc/wicked_expressions/safe_load/flush_variable/float`
-
-```mcfunction
-data remove storage reapermc:wicked_expressions basic_damage.data.float
-data modify storage reapermc:wicked_expressions basic_damage.data.float append value [0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f]
-```
-
-`@function basic_damage:reapermc/wicked_expressions/safe_load/scoreboard_setup`
-
-```mcfunction
-scoreboard objectives add reapermc.wicked_expressions dummy
-```
-
-`@function basic_damage:reapermc/wicked_expressions/safe_load/flush_variable/int`
-
-```mcfunction
-scoreboard players reset $basic_damage#int$0 reapermc.wicked_expressions
-scoreboard players reset $basic_damage#int$1 reapermc.wicked_expressions
-scoreboard players reset $basic_damage#int$1 reapermc.wicked_expressions
-```
-
-`@function basic_damage:reapermc/wicked_expressions/safe_load/flush_variable/bool`
-
-```mcfunction
-scoreboard players reset $basic_damage#bool$0 reapermc.wicked_expressions
-scoreboard players reset $basic_damage#bool$0 reapermc.wicked_expressions
-```
-
 ### reapermc
 
 `@function reapermc:lightning_rod/damage/drown/nested_1`
@@ -360,4 +298,58 @@ execute if score $basic_damage#int$1 reapermc.wicked_expressions matches 1.. run
   "exhaustion": 0,
   "scaling": "never"
 }
+```
+
+### minecraft
+
+`@function_tag minecraft:load`
+
+```json
+{
+  "values": [
+    "basic_damage:reapermc/wicked_expressions/safe_load"
+  ]
+}
+```
+
+`@damage_type_tag minecraft:bypasses_cooldown`
+
+```json
+{
+  "values": [
+    "reapermc:lightning_rod/drown/base_ignore_cd",
+    "reapermc:lightning_rod/generic/base_ignore_cd"
+  ]
+}
+```
+
+### basic_damage
+
+`@function basic_damage:reapermc/wicked_expressions/safe_load`
+
+```mcfunction
+function basic_damage:reapermc/wicked_expressions/safe_load/scoreboard_setup
+function basic_damage:reapermc/wicked_expressions/safe_load/flush_variable/int
+function basic_damage:reapermc/wicked_expressions/safe_load/flush_variable/bool
+```
+
+`@function basic_damage:reapermc/wicked_expressions/safe_load/scoreboard_setup`
+
+```mcfunction
+scoreboard objectives add reapermc.wicked_expressions dummy
+```
+
+`@function basic_damage:reapermc/wicked_expressions/safe_load/flush_variable/int`
+
+```mcfunction
+scoreboard players reset $basic_damage#int$0 reapermc.wicked_expressions
+scoreboard players reset $basic_damage#int$1 reapermc.wicked_expressions
+scoreboard players reset $basic_damage#int$1 reapermc.wicked_expressions
+```
+
+`@function basic_damage:reapermc/wicked_expressions/safe_load/flush_variable/bool`
+
+```mcfunction
+scoreboard players reset $basic_damage#bool$0 reapermc.wicked_expressions
+scoreboard players reset $basic_damage#bool$0 reapermc.wicked_expressions
 ```

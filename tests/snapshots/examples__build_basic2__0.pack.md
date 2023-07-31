@@ -61,16 +61,8 @@ function reapermc:lightning_rod/xp/set_levels
 `@function basic2:reapermc/wicked_expressions/safe_load`
 
 ```mcfunction
-function basic2:reapermc/wicked_expressions/safe_load/flush_variable/float
 function basic2:reapermc/wicked_expressions/safe_load/scoreboard_setup
 function basic2:reapermc/wicked_expressions/safe_load/flush_variable/int
-```
-
-`@function basic2:reapermc/wicked_expressions/safe_load/flush_variable/float`
-
-```mcfunction
-data remove storage reapermc:wicked_expressions basic2.data.float
-data modify storage reapermc:wicked_expressions basic2.data.float append value [0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f]
 ```
 
 `@function basic2:reapermc/wicked_expressions/safe_load/scoreboard_setup`
