@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.0 (2023-07-29)
+### Feature
+
+* Add sin and cos math functions ([`2b8e689`](https://github.com/reapermc/lightning-rod/commit/2b8e689dc3e02508c7b00047c5d62278c9ac8a46))
+
 ## v0.3.0 (2023-07-12)
 ### Feature
 
