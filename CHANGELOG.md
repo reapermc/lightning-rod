@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.5.0 (2023-07-31)
+
+### Feature
+
+* Add offest_rotation module and fix bugs ([`24b2280`](https://github.com/reapermc/lightning-rod/commit/24b22809e1785a9b1159af63487fe6b73e23ba87))
+
 ## v0.4.0 (2023-07-29)
 ### Feature
 
