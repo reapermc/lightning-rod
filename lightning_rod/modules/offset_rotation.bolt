@@ -92,21 +92,21 @@ def offset_rotation_facing_caret(x: int | float | ExpressionNode,
                                  y: int | float | ExpressionNode,
                                  z: int | float | ExpressionNode):
 
-    if not isinstance(x, ExpressionNode) or not isinstance(y, ExpressionNode) or not isinstance(z, ExpressionNode):
+    if isinstance(x, ExpressionNode) or isinstance(y, ExpressionNode) or isinstance(z, ExpressionNode):
+        vector_x = StaticVar(Int)
+        vector_y = StaticVar(Int)
+        vector_z = StaticVar(Int)
+
+        vector_x = x * 1000
+        vector_y = y * 1000
+        vector_z = z * 1000
+
+        copied_rotation = StaticVar(List)
+        copied_rotation = this.Rotation
+        matrix = _matrix_from_gimbal_3d(copied_rotation[0], copied_rotation[1])
+        t_vector_x, t_vector_y, t_vector_z = _transform_matrix_3d(matrix, vector_x, vector_y, vector_z)
+        new_rotation = _vector_to_gimbal_3d(t_vector_x, t_vector_y, t_vector_z)
+        this.Rotation = new_rotation
+
+    else:
         at @s tp @s ~ ~ ~ facing ^x ^y ^z
-        return
-
-    vector_x = StaticVar(Int)
-    vector_y = StaticVar(Int)
-    vector_z = StaticVar(Int)
-
-    vector_x = x * 1000
-    vector_y = y * 1000
-    vector_z = z * 1000
-
-    copied_rotation = StaticVar(List)
-    copied_rotation = this.Rotation
-    matrix = _matrix_from_gimbal_3d(copied_rotation[0], copied_rotation[1])
-    t_vector_x, t_vector_y, t_vector_z = _transform_matrix_3d(matrix, vector_x, vector_y, vector_z)
-    new_rotation = _vector_to_gimbal_3d(t_vector_x, t_vector_y, t_vector_z)
-    this.Rotation = new_rotation
