@@ -7,7 +7,7 @@
 
 ## Introduction
 
-**Minecraft version: `1.19.4`**
+**Minecraft version: `1.20.1`**
 
 This library features an API for the minecraft commands, usually improved by adding dynamic support or even adding new abstract functions.
 

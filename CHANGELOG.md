@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.5.1 (2023-08-02)
+
+### Fix
+
+* Rotation_offset_facing_carret logic is wrong ([`dd502d1`](https://github.com/reapermc/lightning-rod/commit/dd502d1a11328caea7e8f9d1b28816137799f4a5))
+
 ## v0.5.0 (2023-07-31)
 
 ### Feature
