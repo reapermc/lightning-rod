@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.0 (2023-09-01)
+
+### Feature
+
+* Add summon macro ([`5a64a86`](https://github.com/reapermc/lightning-rod/commit/5a64a861152ca1552de9f94a915c8976b50ea582))
+
 ## v0.5.1 (2023-08-02)
 
 ### Fix
