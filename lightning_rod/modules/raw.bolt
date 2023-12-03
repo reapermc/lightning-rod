@@ -1,0 +1,2 @@
+def raw(command: str):
+    raw command

@@ -1,4 +1,2 @@
-
-
 def cancel_momentum():
     tp @s @s

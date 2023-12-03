@@ -1,5 +1,0 @@
-from ./raw_cmd import raw_cmd
-
-
-def add_comment(text: str):
-    raw_cmd(f"# {text}")

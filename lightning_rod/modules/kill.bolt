@@ -1,4 +1,2 @@
-
-
 def kill():
     kill @s

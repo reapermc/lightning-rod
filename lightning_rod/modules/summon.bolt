@@ -1,8 +1,9 @@
 from nbtlib import List, String
+from ./config import Config
 
 # summon override to allow nesting
-_SUMMON_INIT_TAG = f"{ctx.project_id}.summon.init"
-_incr = -1
+SUMMON_INIT_TAG = f"{Config.LIBRARY_NAME}.summon.init"
+incr = -1
 
 macro
     summon
@@ -11,17 +12,17 @@ macro
         nbt=minecraft:nbt_compound_tag
         body=mecha:nested_root:
 
-    global _incr
+    global incr
 
-    _incr += 1
+    incr += 1
 
     nbt = nbt.evaluate()
-    nbt.setdefault("Tags", List[String]()).append(String(_SUMMON_INIT_TAG))
+    nbt.setdefault("Tags", List[String]()).append(String(SUMMON_INIT_TAG))
     summon entity pos nbt
-    as @e[type=entity.get_canonical_value(), tag=_SUMMON_INIT_TAG]:
-        execute function ~/summon_helper/nested_{_incr}:
+    as @e[type=entity.get_canonical_value(), tag=SUMMON_INIT_TAG]:
+        execute function ~/summon_helper/nested_{incr}:
             yield body
-            tag @s remove _SUMMON_INIT_TAG
+            tag @s remove SUMMON_INIT_TAG
 
 # Overload to make nbt optional 
 macro

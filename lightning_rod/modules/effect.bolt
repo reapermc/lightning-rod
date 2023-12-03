@@ -1,7 +1,6 @@
 from nbtlib import Byte, Float
 
-
-_EFFECT_NAMES = {
+EFFECTS = {
     1: 'speed',
     2: 'slowness',
     3: 'haste',
@@ -37,16 +36,52 @@ _EFFECT_NAMES = {
     33: 'darkness'
 }
 
+def get_effect_string_id(effect_numeric_id: int):
+    return EFFECTS[effect_numeric_id]
 
-def effect(effect_id: str, duration: int, amplifier: int, hide_particles: bool = True):
-    effect give @s effect_id duration amplifier hide_particles
+def get_effect_numeric_id(effect_string_id: str):
+    for num_id, str_id in EFFECTS.items():
+        if str_id == effect_string_id:
+            return num_id
 
-def raw_effect(effect_id: str, duration_ticks: int, amplifier: int, hide_particles: bool = True):
-    for id, name in _EFFECT_NAMES.items():
-        if effect_id == name:
-            num_id = id
+def set_effect(
+    effect_id: str,
+    duration_seconds: int,
+    amplifier: int,
+    hide_particles: bool = True,
+):
+    effect give @s effect_id duration_seconds amplifier hide_particles
+
+def set_effect_tick(
+    effect_id: str,
+    duration_ticks: int,
+    amplifier: int,
+    hide_particles: bool = True,
+):
+    effect_numeric_id = get_effect_numeric_id(effect_id)
 
     if entity @s[type=player]:
-        summon area_effect_cloud ~ ~ ~ {Radius: Float(0.0), Age: 4, WaitTime: 0, Duration: 6, Effects:[{Id: Byte(num_id), Amplifier: Byte(amplifier), Duration: duration_ticks, ShowParticles: Byte(not hide_particles)}]}
+        summon area_effect_cloud ~ ~ ~ {
+            Radius: Float(0.0),
+            Age: 4,
+            WaitTime: 0,
+            Duration: 6,
+            Effects: [{
+                Id: Byte(effect_numeric_id),
+                Amplifier: Byte(amplifier),
+                Duration: duration_ticks,
+                ShowParticles: Byte(not hide_particles)
+            }]
+        }
     if entity @s[type=!player]:
-        data modify entity @s ActiveEffects append value {Id: num_id, Duration: duration_ticks, Amplifier: Byte(amplifier), ShowIcon: 0b, ShowParticles: Byte(not hide_particles), Ambient: 0b}
+        data modify entity @s ActiveEffects append value {
+            Id: effect_numeric_id,
+            Duration: duration_ticks,
+            Amplifier: Byte(amplifier),
+            ShowIcon: 0b,
+            ShowParticles: Byte(not hide_particles),
+            Ambient: 0b
+        }
+
+def clear_effect(effect_id: str):
+    effect clear @s effect_id

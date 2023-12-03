@@ -3,7 +3,6 @@ from ./config import Config
 
 logger = logging.getLogger(Config.LIBRARY_NAME)
 
-
 def binary_progression(size: int, reversed: bool = False):
     out = []
 

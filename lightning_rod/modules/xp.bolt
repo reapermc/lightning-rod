@@ -1,78 +1,92 @@
-from wicked_expressions:api import Var, StaticVar, Int, ExpressionNode
-from ./raw_cmd import raw_cmd
-from ./utils import binary_progression
+from wicked_expressions:api import Var, StaticVar, qInt, qIntSource, copy_args, ExprOnly, qIntSource, ExpressionNode
+from ./raw import raw
 from ./config import Config
+from ./utils import binary_progression
 
+def get_xp_points() -> qIntSource:
+    output = Var(qInt)
 
-_WORKING_DIR = f"{Config.ROOT}/xp"
-
-
-def get_xp() -> ExpressionNode:
-    return _get_xp('points')
-
-def get_level() -> ExpressionNode:
-    return _get_xp('levels')
-
-def set_xp(amount: int | ExpressionNode):
-    if not isinstance(amount, ExpressionNode):
-        return raw_cmd(f"xp set @s {amount} points")
-    _set_xp_from_expression(amount, 'points')
-
-def set_level(amount: int | ExpressionNode):
-    if not isinstance(amount, ExpressionNode):
-        return raw_cmd(f"xp set @s {amount} levels")
-    _set_xp_from_expression(amount, 'levels')
-
-def set_xp_percent(amount: int | ExpressionNode):
-    amt = StaticVar(Int)
-    previous_level = StaticVar(Int)
-
-    amt = amount
-
-    # save previous level
-    previous_level = get_level()
-
-    execute function f"{_WORKING_DIR}/set_percent":
-        set_level(8772)
-        set_xp(0)
-
-        for n in binary_progression(7, reversed=True):
-            if amt >= n:
-                increment = n * 778      # (lvl 8872) 778 xp = 1% of bar
-
-                # prevents bar overflow at 100%
-                if n == 64:
-                    increment -= 1
-
-                execute function f"{_WORKING_DIR}/set_percent/{n}":
-                    amt -= n
-                    xp add @s increment
-
-        # restore level
-        set_level(previous_level)
-
-def _get_xp(mode: str) -> ExpressionNode:
-    temp = StaticVar(Int)
-    output = Var(Int)
-
-    with temp.store():
-        if mode in ('p', 'points'):
-            xp query @s points
-        elif mode in ('l', 'levels'):
-            xp query @s levels
-
-    output = temp
+    with output.store():
+        xp query @s points
     return output
 
-def _set_xp_from_expression(amount: ExpressionNode, mode: str):
-    amt = StaticVar(Int)
+def get_xp_level() -> qIntSource:
+    output = Var(qInt)
 
-    raw_cmd(f"xp set @s 0 {mode}")
-    amt = amount
+    with output.store():
+        xp query @s levels
+    return output
 
-    execute function f"{_WORKING_DIR}/set_{mode}":
-        for n in binary_progression(28, reversed=True):
-            if amt >= n:
-                execute function f"{_WORKING_DIR}/set_{mode}/{n}":
-                    amt -= n
-                    raw_cmd(f"xp add @s {n} {mode}")
+@copy_args(amount=ExprOnly(StaticVar[qInt]))
+def set_xp_points(amount: int | ExpressionNode):
+    if not isinstance(amount, ExpressionNode):
+        return raw(f"xp set @s {amount} points")
+    set_xp_points(0)
+    return _add_from_expression(amount, 'points')
+
+@copy_args(amount=ExprOnly(StaticVar[qInt]))
+def set_xp_level(amount: int | ExpressionNode):
+    if not isinstance(amount, ExpressionNode):
+        return raw(f"xp set @s {amount} levels")
+    set_xp_level(0)
+    return _add_from_expression(amount, 'levels')
+
+@copy_args(amount=ExprOnly(StaticVar[qInt]))
+def add_xp_points(amount: int | ExpressionNode):
+    if not isinstance(amount, ExpressionNode):
+        return raw(f"xp add @s {amount} points")
+    return _add_from_expression(amount, 'points')
+
+@copy_args(amount=ExprOnly(StaticVar[qInt]))
+def add_xp_level(amount: int | ExpressionNode):
+    if not isinstance(amount, ExpressionNode):
+        return raw(f"xp add @s {amount} levels")
+    return _add_from_expression(amount, 'levels')
+
+@copy_args(bar_percent=ExprOnly(StaticVar[qInt]))
+def set_xp_points_percent(bar_percent: int | ExpressionNode):
+    STATIC_PATH = f"{Config.LOCAL_DIR}/xp/set_xp_points_percent"
+    ONE_PERCENT_XP_AMOUNT = 778
+    MAGIC_LEVEL = 8772                  # at this level, 778xp == 1% of bar
+    previous_level = StaticVar(qInt)
+
+    previous_level = get_xp_level()
+
+    set_xp_level(MAGIC_LEVEL)
+
+    if not isinstance(bar_percent, ExpressionNode):
+        set_xp_points(ONE_PERCENT_XP_AMOUNT*bar_percent)
+        set_xp_level(previous_level)
+        return
+
+    execute function STATIC_PATH:
+        percent_left = bar_percent
+        set_xp_points(0)
+
+        for increment in binary_progression(7, reversed=True):
+            if percent_left >= increment:
+                xp_to_add = ONE_PERCENT_XP_AMOUNT * increment
+
+                # this prevents bar overflow at 100%
+                if increment == 64:
+                    xp_to_add -= 1
+
+                execute function ~/{increment}:
+                    percent_left -= increment
+                    xp add @s xp_to_add
+
+        set_xp_level(previous_level)
+
+@copy_args(amount=StaticVar[qInt])
+def _add_from_expression(amount: ExpressionNode, mode: str):
+    STATIC_PATH = f"{Config.LOCAL_DIR}/xp/add_xp_{mode}"
+
+    execute function STATIC_PATH:
+        for increment in binary_progression(28, reversed=True):
+            if amount >= increment:
+                execute function ~/{increment}:
+                    raw(f"xp add @s {increment} {mode}")
+                    amount -= increment
+
+        # prevents the out of place levelup sound effect from playing
+        stopsound @s player minecraft:entity.player.levelup

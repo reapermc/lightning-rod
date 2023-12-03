@@ -1,28 +1,26 @@
-from wicked_expressions:api import Var, Int, ExpressionNode
+from wicked_expressions:api import Var, StaticVar, qInt, String, StringSource
+from ./config import Config
+from ./raw import raw
 
+def get_gamemode() -> StringSource:
+    STATIC_PATH = f"{Config.LOCAL_DIR}/gamemode/get_gamemode"
+    numeric_gamemode = StaticVar(qInt)
+    output = Var(String)
 
-_MATCHED_MODE = {
-    'survival': 'survival',
-    '0': 'survival',
-    'creative': 'creative',
-    '1': 'creative',
-    'adventure': 'adventure',
-    '2': 'adventure',
-    'spectator': 'spectator',
-    '3': 'spectator'
-}
+    execute function STATIC_PATH:
+        with numeric_gamemode.store():
+            data get entity @s playerGameType
 
-
-def set_gamemode(mode: str):
-    gamemode _parse_mode(mode)
-
-def get_gamemode() -> ExpressionNode:
-    output = Var(Int)
-    
-    with output.store():
-        data get entity @s playerGameType
+        if numeric_gamemode == 0:
+            output = 'survival'
+        elif numeric_gamemode == 1:
+            output = 'creative'
+        elif numeric_gamemode == 2:
+            output = 'adventure'
+        elif numeric_gamemode == 3:
+            output = 'spectator'
 
     return output
 
-def _parse_mode(mode: str) -> str:
-    return _MATCHED_MODE[str(mode)]
+def set_gamemode(mode: str):
+    return raw(f"gamemode {mode} @s")

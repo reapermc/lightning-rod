@@ -1,187 +1,69 @@
-from wicked_expressions:api import Data, Var, StaticVar, Int, Bool, Float, ExpressionNode
+from wicked_expressions:api import copy_args, Scoreboard, qIntSource, Var, StaticVar, qInt, ExpressionNode
 from ./config import Config
 from ./utils import binary_progression
 
-_WORKING_DIR = f"{Config.ROOT}/math"
+@copy_args(min=StaticVar[qInt], max=StaticVar[qInt])
+def random(min: int | ExpressionNode, max: int | ExpressionNode) -> qIntSource:
+    SETUP_PATH = f"{Config.GLOBAL_DIR}/math/random_setup"
+    STATIC_PATH = f"{Config.LOCAL_DIR}/math/random"
+    lcg = Scoreboard(Config.SCOREBOARD_ROOT)['.random.math.lcg']
+    output = Var(qInt)
 
-def random(value_min: int | ExpressionNode, value_max: int | ExpressionNode) -> ExpressionNode:
-    # random.randint(min, max)
-    min = StaticVar(Int)
-    max = StaticVar(Int)
-    size = StaticVar(Int)
-    lcg = StaticVar(Int)
-    temp = StaticVar(Int)
-    output = Var(Int)
-
-    lcg_a = 1630111353
-    lcg_c = 1623164762
-    lcg_m = 2147483647
-    setup_path = f"{_WORKING_DIR}/random/setup"
-    run_path = f"{_WORKING_DIR}/random/run"
-
-    min = value_min
-    max = value_max
-
-    merge function_tag minecraft:load {"values": [setup_path]}
-    function setup_path:
+    merge function_tag minecraft:load {"values": [SETUP_PATH]}
+    function SETUP_PATH:
         if not lcg.exists():
             with lcg.store():
                 seed
 
-    execute function run_path:
+    LCG_A = 1630111353
+    LCG_C = 1623164762
+    LCG_M = 2147483647
+
+    execute function STATIC_PATH:
+        size = StaticVar(qInt)
+        temp = StaticVar(qInt)
+
         size = max - min + 1
-        lcg = (lcg * lcg_a + lcg_c) % lcg_m
+        lcg = (lcg * LCG_A + LCG_C) % LCG_M
         temp = lcg / 8 % size + min
 
     output = temp
     return output
 
-def power(val: int | ExpressionNode, exp: int | ExpressionNode) -> ExpressionNode:
-    value = StaticVar(Int)
-    exponent = StaticVar(Int)
-    temp = StaticVar(Int)
-    output = Var(Int)
+@copy_args(value=StaticVar[qInt], exponent=StaticVar[qInt])
+def power(value: int | ExpressionNode, exponent: int | ExpressionNode) -> qIntSource:
+    STATIC_PATH = f"{Config.LOCAL_DIR}/math/power"
+    temp = StaticVar(qInt)
+    output = Var(qInt)
 
-    run_path = f"{_WORKING_DIR}/pow/run"
-
-    value = val
     temp = value
-    exponent = exp
 
-    execute function run_path:
+    execute function STATIC_PATH:
         temp *= value
         exponent -= 1
 
         if exponent > 1:
-            function run_path
+            function STATIC_PATH
 
     output = temp
     return output
 
-def sqrt(value_: int | ExpressionNode) -> ExpressionNode:
-    value = StaticVar(Int)
-    temp = StaticVar(Int)
-    temp2 = StaticVar(Int)
-    output = Var(Int)
+@copy_args(value=StaticVar[qInt])
+def sqrt(value: int | ExpressionNode) -> qIntSource:
+    STATIC_PATH = f"{Config.LOCAL_DIR}/math/sqrt"
+    temp = StaticVar(qInt)
+    temp2 = StaticVar(qInt)
+    output = Var(qInt)
 
-    run_path = f"{_WORKING_DIR}/sqrt/run"
-    value = value_
-
-    execute function run_path:
+    execute function STATIC_PATH:
         temp2 = 0
 
         for binary_increment in binary_progression(16, reversed=True):
             temp = temp2 + binary_increment
             temp *= temp
+
             if temp <= value:
                 temp2 += binary_increment
 
     output = temp2
-    return output
-
-def sin(degrees_: int | float | ExpressionNode):
-    # math.sin(math.radians(foo))
-    degrees = StaticVar(Float)
-    in_value = StaticVar(Int)
-    temp = StaticVar(Int)
-    temp2 = StaticVar(Int)
-    output = Var(Float)
-
-    degrees = degrees_
-    in_value = degrees * 10
-    temp2 = (in_value - 1800) % 1800 - 900
-    temp2 *= temp2
-    temp = (temp2 + 3240000) / 1000
-    temp2 = (temp2 * -4 + 3240000) / temp
-
-    temp = in_value % 3600
-    if temp >= 1800:
-        temp2 *= -1
-
-    output = Data.cast(temp2 / 1000, 'float')
-    return output
-
-def cos(degrees_: int | float | ExpressionNode):
-    # math.cos(math.radians(foo))
-    degrees = StaticVar(Float)
-    in_value = StaticVar(Int)
-    input = StaticVar(Int)
-    temp = StaticVar(Int)
-    temp2 = StaticVar(Int)
-    output = Var(Float)
-
-    degrees = degrees_
-    in_value = degrees * 10
-    temp2 = (in_value - 900) % 1800 - 900
-    temp2 *= temp2
-    temp = (temp2 + 3240000) / 1000
-    temp2 = (temp2 * -4 + 3240000) / temp
-
-    temp = (in_value + 900) % 3600
-    if temp >= 1800:
-        temp2 *= -1
-
-    output = Data.cast(temp2 / 1000, 'float')
-    return output
-
-def atan2(x_: int | float | ExpressionNode, y_: int | float | ExpressionNode):
-    x = StaticVar(Int)
-    y = StaticVar(Int)
-    quadrant_x = StaticVar(Int)
-    quadrant_y = StaticVar(Int)
-    temp_0 = StaticVar(Int)
-    temp_1 = StaticVar(Int)
-    temp_2 = StaticVar(Int)
-    temp_3 = StaticVar(Int)
-    temp_4 = StaticVar(Int)
-    input_swap = StaticVar(Bool)
-    temp_output = StaticVar(Int)
-    output = Var(Int)
-
-    x = x_
-    y = y_
-
-    quadrant_x = 1
-    if x < 0:
-        quadrant_x = -1
-        x *= -1
-
-    quadrant_y = 1
-    if y < 0:
-        quadrant_y = -1
-        y *= -1
-
-    input_swap = False
-    if x < y:
-        input_swap = True
-        scoreboard players operation x.holder x.obj >< y.holder y.obj       # ew
-
-    temp_0 = y * 1000 / x
-    temp_1 = temp_0
-    temp_0 = temp_0 * temp_0 / 1000
-
-    temp_2 = 776
-    temp_3 = -2874
-    temp_4 = 9951
-
-    temp_4 = temp_4 * temp_1 / 10000
-    temp_1 = temp_1 * temp_0 / 1000
-    temp_3 = temp_3 * temp_1 / 10000
-    temp_1 = temp_1 * temp_0 / 1000
-    temp_2 = temp_2 * temp_1 / 10000
-    temp_output = (temp_2 + temp_3 + temp_4) * 900 / 1570
-
-    if input_swap:
-        temp_output = temp_output * -1 + 900
-
-    if quadrant_x == -1:
-        if quadrant_y == -1:
-            temp_output -= 1800
-        elif quadrant_y == 1:
-            temp_output = temp_output * -1 + 1800
-    elif quadrant_x == 1:
-        if quadrant_y == -1:
-            temp_output *= -1
-
-    output = temp_output
     return output
