@@ -2,6 +2,20 @@
 
 <!--next-version-placeholder-->
 
+## v1.0.0 (2023-12-03)
+
+### Feature
+
+* V1.0.0 release ([`bf11867`](https://github.com/reapermc/lightning-rod/commit/bf11867c7873f2f00b43811fac1731456b8e28f2))
+
+### Fix
+
+* Outdaded workflows python version ([`20344ce`](https://github.com/reapermc/lightning-rod/commit/20344cee81fe93d8a7eeebfb7b233aeba4ae38c0))
+
+### Breaking
+
+* v1.0.0 release ([`bf11867`](https://github.com/reapermc/lightning-rod/commit/bf11867c7873f2f00b43811fac1731456b8e28f2))
+
 ## v0.6.0 (2023-09-01)
 
 ### Feature
